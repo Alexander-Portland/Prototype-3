@@ -127,3 +127,7 @@ li a:hover {
   font-size: 8em;
   padding-left: 30%;
 }
+
+.displayInline{
+  display:inline-block
+}

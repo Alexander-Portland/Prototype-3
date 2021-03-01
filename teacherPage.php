@@ -229,23 +229,6 @@ if($numStudent == 0){
                             else{
                                 echo "<script type='text/javascript'>alert('You cannot upload a post to a class you are not assigned to');</script>";
                             }
-                            //$rowClassFind2 = $resultClass->fetch_assoc();
-
-                            //$classID = $rowClassFind['class_id'];
-
-                            //$name = $_FILES['myfile']['name'];
-                            //$type = $_FILES['myfile']['type'];
-
-                            //$data = file_get_contents($_FILES['myfile']['tmp_name']);
-
-                            //$stmt = $dbh->prepare("insert into class_posts values('',?,?,?,?,?,?)");
-                            //$stmt->bindParam(1,$classIdSelect);
-                            //$stmt->bindParam(2,$postName);
-                            //$stmt->bindParam(3,$classDescription);
-                            //$stmt->bindParam(4,$name);
-                            //$stmt->bindParam(5,$type);
-                            //$stmt->bindParam(6,$data);
-                            //$stmt->execute();
                         }
                     }
                     else{
@@ -279,8 +262,6 @@ if($numStudent == 0){
                         $numDeletePostResult = mysqli_num_rows($resultClassNameFind);
 
                         if($numDeletePostResult >= 1){
-                            //$rowClassFind = $resultClassFind->fetch_assoc();
-                            //$foundClassId = $rowClassFind['class_id'];
                         
                             $postName = $_POST['postNameDelete'];
                             $postDelete = "delete from class_posts where class_id = '$foundClassId' && postTitle = '$postName'";
@@ -298,13 +279,6 @@ if($numStudent == 0){
                 else{
                     echo "<script type='text/javascript'>alert('The class you selected does not exist');</script>";
                 }
-                    //$rowClassFind = $resultClassFind->fetch_assoc();
-
-                    //$foundClassId = $rowClassFind['class_id'];
-                    
-                    //$postName = $_POST['postNameDelete'];
-                    //$postDelete = "delete from class_posts where class_id = '$foundClassId' && postTitle = '$postName'";
-                    //$postDeleteQuery = mysqli_query($con,$postDelete);
                 }
             ?>
 
