@@ -13,13 +13,10 @@ body{
     border-radius: 15px;
     margin: auto;
     width: 30%;
+    height: 100%;
     padding: 70px 0;
     border: 3px solid rgb(65, 61, 61);
 }
-
-.loginTitleCenter{
-    text-align: center;
-  }
 
   .loginTitle{
       font-size: 5vh;
@@ -103,7 +100,7 @@ body{
     cursor: pointer;
   }
 
-  @media only screen and (max-width: 750px){
+  /*@media (min-width: 400px){
     .loginBoxSettings{
         width: 100%;
         height: 100%;
@@ -111,5 +108,17 @@ body{
     }
     body{
         background-color: rgb(65, 61, 61);
+    }
+  }
+*/
+  @media screen and (min-width: 400px) {
+    body {
+      background-color: lightgreen;
+    }
+  }
+  
+  @media screen and (min-width: 800px) {
+    body {
+      background-color: lavender;
     }
   }
