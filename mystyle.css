@@ -1,17 +1,3 @@
-.background{
-    /* The image used */
-    background-image: url("img/background1.jpg");
-
-    /* Full height */
-    height: 100%; 
-    width: 100%;
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
 .centerPos{
   padding-top: 10%;
   padding-left: 40%;
@@ -43,7 +29,7 @@
 }
 
 .loginButton{
-  width: 75%;
+  width: 100%;
   height: 25%;
 }
 
@@ -123,13 +109,6 @@ li a:hover {
   font-size: 0.8em;
 }
 
-.outOfOrder{
-  font-size: 8em;
-  padding-left: 30%;
-}
-
 .displayInline{
   display:inline-block
 }
-
-/* */
