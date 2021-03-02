@@ -149,7 +149,7 @@ if($numStudent == 0){
                 $sendName = $_POST['sendName'];
                 $sendTitle = $_POST['questionTitle'];
                 $sendQuestion = $_POST['sendQuestion'];
-                $teacherQuery = "select teacher_id from teacherdetails where teacher_surname = '$sendName'";
+                $teacherQuery = "select teacher_id from teacherdetails where teacher_username = '$sendName'";
                 $resultTeacher = mysqli_query($con,$teacherQuery);
                 $numResultTeacher = mysqli_num_rows($resultTeacher);
 
