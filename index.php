@@ -4,35 +4,15 @@
 <head> 
     <title>login</title>
     <link rel="stylesheet" href="mystyle.css">
-    <script>
-
-        function helpNote(helpSection) {
-            var hideVar = document.getElementById(helpSection);
-            if (hideVar.style.display === "none") {
-                hideVar.style.display = "block";
-                document.getElementById("loginBox").style.height = "16em";
-            } else {
-                hideVar.style.display = "none";
-                document.getElementById("loginBox").style.height = "10em";
-            }
-        }
-        function failedLoginNote() {
-            var hideVar = document.getElementById('loginFailMessage');
-            if (hideVar.style.display === "none") {
-                hideVar.style.display = "block";
-            } else {
-                hideVar.style.display = "none";
-            }
-        }
-    </script>
+    <script src="pageInteraction.js"></script>
 </head>
 <body class="background">
     <section class = "background"></section>
     <section class="centerPos">
     <section id = "loginBox" class="login">
+        <form action="Validation.php" method="post">
         <section class = "loginCenter">
             <h2>Login Here</h2>
-            <form action="Validation.php" method="post">
                 <label>Username</label><br>
                 <input type="text" name="user" required >
                 <br>

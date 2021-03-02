@@ -7,11 +7,15 @@
         <div>
             <h2>Register Here</h2>
             <form action="register.php" method="post">
-            <label>Username</label>
-            <input type="text" name="user" required>
+            <label>Forename: </label>
+            <input type="text" name="fName" required>
             <br>
-            <label>Password</label>
-            <input type="password" name="password" required>
+            <label>Surname: </label>
+            <input type="text" name="lName" required>
+            <br>
+            <label>Password: </label>
+            <input type="text" name="password">
+            <br>
             <button type="submit">Register</button>
             </form>
         </div>

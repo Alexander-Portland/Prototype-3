@@ -33,38 +33,7 @@ if($numStudent == 0){
     <style>
         <?php include 'mystyle.css'; ?>
     </style>
-    <script>
-
-    function minimise(contentID){
-        var hideVar = document.getElementById(contentID);
-        hideVar.style.display = "none";
-    }
-
-    function hideContent(contentID) {
-        var hideVar = document.getElementById(contentID);
-        if (hideVar.style.display === "none") {
-            hideVar.style.display = "block";
-        } else {
-            hideVar.style.display = "none";
-        }
-    }
-    function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
-        var questionIDElement = document.getElementsByName("classID");
-        var fromElement = document.getElementById("labelFrom");
-        var titleElement = document.getElementById("labelSubject");
-        var descriptionElement = document.getElementById("labelQuestion");
-        var sendID = document.getElementById(QuestionID).textContent;
-        var sendName = document.getElementById(QuestionSenderJav).textContent;
-        var sendSubject = document.getElementById(QuestionTitleJav).textContent;
-        var sendQuestion = document.getElementById(QuestionDescriptionJav).textContent  ;
-        questionIDElement.value = sendID;
-
-        document.getElementsByName("classID")[0].value = sendID;
-        fromElement.innerHTML = sendName;
-        titleElement.innerHTML = sendSubject;
-        descriptionElement.innerHTML = sendQuestion;
-    }
-</script>
+    <script src="pageInteraction.js"></script>
     </head>
     <body>
     

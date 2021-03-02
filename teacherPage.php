@@ -35,22 +35,7 @@ if($numStudent == 0){
     <style>
         <?php include 'mystyle.css'; ?>
     </style>
-    <script>
-
-        function minimise(contentID){
-            var hideVar = document.getElementById(contentID);
-            hideVar.style.display = "none";
-        }
-        
-        function hideContent(contentID) {
-            var hideVar = document.getElementById(contentID);
-            if (hideVar.style.display === "none") {
-                hideVar.style.display = "block";
-            } else {
-                hideVar.style.display = "none";
-            }
-        }
-    </script>
+    <script src="pageInteraction.js"></script>
     </head>
 
     <body>
@@ -85,7 +70,7 @@ if($numStudent == 0){
                     </section>
 
                 </section>
-
+                
                 <section id = "classDelete" class = "hidePost">
                     <b>Delete posts</b>
                     <form method="post" enctype="multipart/form-data">
