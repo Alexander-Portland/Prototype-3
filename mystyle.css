@@ -1,5 +1,5 @@
 .centerPos{
-  padding-top: 10%;
+  padding-top: 50%;
   padding-left: 40%;
 }
 
@@ -11,7 +11,7 @@
 
 .login{
   color: aliceblue;
-  filter: drop-shadow(0 0 30px #333);
+  filter: drop-shadow(0 0 20px #333);
   background-color: rgb(65, 61, 61);
   border-radius: 25px;
   width: 14em;
@@ -29,7 +29,7 @@
 }
 
 .loginButton{
-  width: 100%;
+  width: 50%;
   height: 25%;
 }
 
@@ -45,7 +45,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border: 3px solid  rgb(65, 61, 61);;
+  border: 3px solid  rgb(65, 61, 61);
   filter: drop-shadow(0 0 30px #333);
   background-color: rgb(65, 61, 61);
   border-radius: 10px;
@@ -110,5 +110,11 @@ li a:hover {
 }
 
 .displayInline{
-  display:inline-block
+  display:inline-block;
+}
+
+@media (max-width: 500px){
+  body{
+    background-color:blueviolet;
+  }
 }

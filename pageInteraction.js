@@ -48,5 +48,3 @@ function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescrip
     titleElement.innerHTML = sendSubject;
     descriptionElement.innerHTML = sendQuestion;
 }
-
-
