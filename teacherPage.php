@@ -300,9 +300,6 @@ if($numStudent == 0){
                             $type = $_FILES['myfileUpdate']['type'];
 
                             $data = file_get_contents($_FILES['myfileUpdate']['tmp_name']);
-
-                            // set the PDO error mode to exception
-                            //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                           
                             $update = $dbh->prepare("update class_posts set description = ?, name = ?, mine = ?, data = ? where post_id = ?");
                             $update->bindParam(1,$classDescriptionSearch);
@@ -312,16 +309,7 @@ if($numStudent == 0){
                             $update->bindParam(5,$postID);
                             $update->execute();
                             
-
-
-                            //$stmt = $dbh->prepare("update class_posts values('',?,?,?,?,?,?) where post_id = '$postID'");
-                            //$stmt->bindParam(1,$foundClassId);
-                            //$stmt->bindParam(2,$classTitleSearch);
-                            //$stmt->bindParam(3,$classDescriptionSearch);
-                            //$stmt->bindParam(4,$name);
-                            //$stmt->bindParam(5,$type);
-                            //$stmt->bindParam(6,$data);
-                            //$stmt->execute();
+                            
                         }
 
                         
