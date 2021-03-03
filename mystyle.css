@@ -1,4 +1,211 @@
+/* The background for every page is set to a mintcream color */
+body{
+  background-color:mintcream;
+}
+
+/* Login page form position settings when displayed on PCs*/
+.loginBoxPos{
+  padding-top: 10%;
+}
+
+/* Login page form settings when displayed on PCs*/
+.loginBoxSettings{
+  color: aliceblue;
+  filter: drop-shadow(0 0 20px #333);
+  background-color: rgb(65, 61, 61);
+  border-radius: 15px;
+  margin: auto;
+  width: 40%;
+  padding: 70px 0;
+  border: 3px solid rgb(65, 61, 61);
+}
+/* login Title settings */
+.loginTitle{
+    font-size: 5vh;
+    text-align: center;
+}
+/* login label settings */
+.loginLabel{
+    font-size: 3vh;
+    padding-left: 3vh;
+}
+
+/* login help test settings */
+.loginHelpText{
+  padding-left: 3vh;
+}
+
+/* login input button settings*/
+.loginInputButton{
+  display:block;
+  margin: auto;
+  width: 90%;
+  font-size: 18px;
+}
+
+/* Help button positioning */
+.helpButton{
+  padding-left: 3vh;
+}
+
+/* Help drop down box settings */
+.help {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Drop down box animation settings */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* Help drop down box content settings */
+.helpContent{
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.6s;
+  animation-name: animatetop;
+  animation-duration: 0.6s
+}
+
+/* Help drop down video settings */
+.helpVideo{
+  margin: auto;
+  padding: 70px 0;
+  width: 100%;
+  height: 240px
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* */
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #4f57c0; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+}
+
+/* Login page display settings so that the login page works with mobile devices*/
+@media screen and (max-width: 760px) {
+  .loginBoxSettings{
+    color: aliceblue;
+    filter: none;
+    background-color: rgb(65, 61, 61);
+    border-radius: 15px;
+    width: 100%;
+    padding: 70px 0;
+    border: 3px solid rgb(65, 61, 61);
+  }
+  .helpContent{
+    width: 100%;
+    padding: 0px;
+  }
+
+  .loginBoxPos{
+    padding-top: 20%;
+  }
+
+  .centerPos{
+    margin: auto;
+    width: auto;
+  }
+  body{
+    background-color: rgb(65, 61, 61);
+  }
+  
+}
+
+
+/* The navbar title settings which help display the first and last name of the user*/
+.navBarTitle{
+  color:  aliceblue;
+  display: inline-block;
+  padding: 14px 16px;
+
+}
+
+
+.NavBar{
+  list-style-type: none;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #4f57c0;
+  filter: drop-shadow(0 0 30px #4f57c0);
+  background-color:#4f57c0;
+  border-radius: 10px;
+  
+}
+
+.NavBar a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding-top: 1.9em;
+  text-decoration: none;
+  size: 7em;
+  width: 100%;
+  height: 3em;
+}
+
+
+.NavBar a:hover {
+  color:black;
+	background-color: white;
+}
+
+.NavBar p{
+  display:block;
+  color: white;
+  text-align: center;
+  padding-top: 1.9em;
+  margin:auto;
+  text-decoration: none;
+  size: 7em;
+  width: 100%;
+  height: 3em;
+}
+
+.classAddStyle{
+  visibility: hidden;
+}
+
 .centerPos{
+  margin: auto;
   padding-top: 50%;
   padding-left: 40%;
 }
@@ -9,77 +216,17 @@
   padding-right: 20%;
 }
 
-.login{
-  color: aliceblue;
-  filter: drop-shadow(0 0 20px #333);
-  background-color: rgb(65, 61, 61);
-  border-radius: 25px;
-  width: 14em;
-  height: 10em;
-  padding: 70px 0;
-  border: 3px solid rgb(65, 61, 61);
-}
-
-.loginCenter{
-  text-align: center;
-}
-
-.loginleft{
-  padding-left: 1.5em;
-}
-
-.loginButton{
-  width: 50%;
-  height: 25%;
-}
-
-.navBarTitle{
-  color:  aliceblue;
-  padding: 14px 16px;
-
-}
-
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 3px solid  rgb(65, 61, 61);
-  filter: drop-shadow(0 0 30px #333);
-  background-color: rgb(65, 61, 61);
-  border-radius: 10px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding-top: 1.9em;
-  margin-left: 3em;
-  text-decoration: none;
-  size: 7em;
-  width: 10em;
-  height: 3em;
-}
-
-li a:hover {
-  background-color: #111;
-}
-
-.classAddStyle{
-  visibility: hidden;
-}
 .classPosts{
+  margin-top: 5em;
   border: 3px solid rgba(255, 255, 255, 0.911);
   border-radius: 10px;
   color: black;
   background-color: rgba(255, 255, 255, 0.911);
   filter: drop-shadow(0 0 30px #333);
+}
+
+.classPostSeperator{
+  padding-top: 5em;
 }
 
 .expandButton{
@@ -111,10 +258,4 @@ li a:hover {
 
 .displayInline{
   display:inline-block;
-}
-
-@media (max-width: 500px){
-  body{
-    background-color:blueviolet;
-  }
 }

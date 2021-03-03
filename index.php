@@ -3,11 +3,13 @@
 
 <head> 
     <title>login</title>
-    <link rel="stylesheet" href="login.css">
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="mystyle.css">
     <script src="pageInteraction.js"></script>
 </head>
 
-<body>
+<main>
     <section id="myhelp" class="help">
         <section class="helpContent">
             <span class="close">&times;</span>
@@ -33,14 +35,16 @@
                 <section class = "">
                     <h2 class ="loginTitle">Welcome Back!</h2>
                     <label class = "loginLabel">Username</label><br>
+                    <img src="img\user.png" id="" alt="Missing user picture" class = "helpButton" width = 40px>
                     <input type="text" name="user" class = "loginInputButton" required >
                     <br>
                     <label class = "loginLabel">Password</label><br>
+                    <img src="img\lock.png" id="" alt="Missing lock picture" class = "helpButton" width = 40px>
                     <input type="password" name="password" class = "loginInputButton" required>
                 </section>
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <section class = "loginCenter">
-                    <button type="submit" class="loginInputButton">Login</button>
+                    <button type="submit" class="loginInputButton button">Login</button>
                 </section>
 
             </form>
@@ -64,6 +68,6 @@
         }
 
     </script>
-</body>
+</main>
 
 </html>

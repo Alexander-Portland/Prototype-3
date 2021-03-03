@@ -32,6 +32,11 @@ function maximise(contentID){
     hideVar.style.display = "block";
 }
 
+function successMesage(messageID){
+    var messageVar = document.getElementById(messageID)
+    messageVar.style.display = "block"
+}
+
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     var questionIDElement = document.getElementsByName("classID");
     var fromElement = document.getElementById("labelFrom");

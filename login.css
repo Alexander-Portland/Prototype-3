@@ -12,8 +12,7 @@ body{
     background-color: rgb(65, 61, 61);
     border-radius: 15px;
     margin: auto;
-    width: 30%;
-    height: 100%;
+    width: 40%;
     padding: 70px 0;
     border: 3px solid rgb(65, 61, 61);
 }
@@ -39,7 +38,6 @@ body{
     font-size: 18px;
   }
 .helpButton{
-    border-radius: 100px;
     padding-left: 3vh;
 }
   .help {
@@ -74,9 +72,9 @@ body{
     border: 1px solid #888;
     width: 50%;
     -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
+    -webkit-animation-duration: 0.6s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.6s
   }
   .helpVideo{
     margin: auto;
@@ -100,25 +98,35 @@ body{
     cursor: pointer;
   }
 
-  /*@media (min-width: 400px){
-    .loginBoxSettings{
-        width: 100%;
-        height: 100%;
-        background-color: rgb(65, 61, 61);
-    }
-    body{
-        background-color: rgb(65, 61, 61);
-    }
+  .button {
+    background-color: #4f57c0; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
   }
-*/
-  @media screen and (min-width: 400px) {
-    body {
-      background-color: lightgreen;
-    }
+
+  @media screen and (max-width: 760px) {
+    .loginBoxSettings{
+      color: aliceblue;
+      filter: none;
+      background-color: rgb(65, 61, 61);
+      border-radius: 15px;
+      width: 100%;
+      padding: 70px 0;
+      border: 3px solid rgb(65, 61, 61);
+  }
+  .helpContent{
+    width: 100%;
+    padding: 0px;
+  }
+
+  .loginBoxPos{
+    padding-top: 20%;
+  }
+
+  body{
+    background-color: rgb(65, 61, 61);
   }
   
-  @media screen and (min-width: 800px) {
-    body {
-      background-color: lavender;
-    }
-  }
+}

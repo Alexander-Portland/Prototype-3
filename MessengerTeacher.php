@@ -29,25 +29,51 @@ if($numStudent == 0){
 <html>
     <head>
     <title>Messages Page</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="mystyle.css">
     <style>
         <?php include 'mystyle.css'; ?>
     </style>
     <script src="pageInteraction.js"></script>
     </head>
-    <body>
+    <main>
     
-    <ul>
+    <nav class="NavBar">
+        <p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p>
+        <a href="teacherPage.php"><b>Home</b></a>
+        <a href="logout.php"><b>Log out</b></a>
+    </nav>
+  
 
-    <li><p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p></li>
+    <section id="myhelp" class="help">
+        <section class="helpContent">
+            <span id = "helpClose" class="close">&times;</span>
+            <label class = "loginLabel"><b>Using the login page</b></label>
+            <p class = "loginHelpText">To answer question from you're students, follow these steps:</p>
+            <ol>
+            
+                <li>Press the reply button for the message you wish to reply to.</li>
+                <li>Type you're response in the text box next to the title "answer"</li>
+                <li>When you're satisfied with you're answer, press the send button</li>
 
-    <li><a href="teacherPage.php">Home</a></li>
+            </ol>
+            <video class = "helpVideo" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </section>
 
-    <li><a href = "logout.php">Log Out</a></li>
+    <section id="messageSuccess" class="help">
+        <section class="helpContent">
+            <label class = "loginLabel"><b>Using the login page</b></label>
+            <button onclick ="successClose()">&times;</button>
+        </section>
+    </section>
     
-    </ul>
     <section class = "centerPosClass">
-        <section id = "classDisplay" class="classPosts">
+        <section id = "questionReply" class="classPosts">
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classID" class = "hidePost" required><br>
                         <b><p class = "displayInline">From:</p></b> <p id = "labelFrom" class = "displayInline"></p><br>
@@ -61,48 +87,42 @@ if($numStudent == 0){
 
     <section class = "centerPosClass">
         <section id = "classDisplay" class="classPosts">
-            <button onclick="hideContent('helpUpdate')" class="expandButton">?</button>
-            <section id = "helpUpdate" class = "hidePost">
-                <p>To reply to a question, press the "reply" button adjacent to the question you wish to answer.
-                <br>When pressed an asnwer form will be displayed for you to make you're answer.
-                </p>
-            </section>
+            <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x><br>
 
             <?php
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Teacher_ID = '$ID' && Question_Answered = 0";
             $resultClass = mysqli_query($con,$classPick);
             $numClass = mysqli_num_rows($resultClass);
+                while($rowClass = $resultClass->fetch_assoc()): ?> 
+                    <?php
+                        $QuestionID = rand();
+                        $QuestionSender = rand();
+                        $QuestionTitle = rand();
+                        $QuestionDescription = rand();
+                        $studentID = $rowClass["Student_ID"];
 
+                        $studentFnamePick = "select forname, surname from studentdetails where student_id = '$studentID'";
+                        $studentQuery = mysqli_query($con,$studentFnamePick);
 
-            while($rowClass = $resultClass->fetch_assoc()): ?> 
-                <?php
-                    $QuestionID = rand();
-                    $QuestionSender = rand();
-                    $QuestionTitle = rand();
-                    $QuestionDescription = rand();
-                    $studentID = $rowClass["Student_ID"];
+                        $NamesClass = $studentQuery->fetch_assoc();
 
-                    $studentFnamePick = "select forname, surname from studentdetails where student_id = '$studentID'";
-                    $studentQuery = mysqli_query($con,$studentFnamePick);
+                        $FnameRow = $NamesClass["forname"];
+                        $LnameRow = $NamesClass["surname"];
+                        $messageID = $rowClass["Message_ID"];
+                        $messageTitle = $rowClass["Question_Title"];
+                        $messageDescription = $rowClass["Question_Description"];
+                        echo '<button onclick ="replySend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')" class="expandButton">Reply</button>';
 
-                    $NamesClass = $studentQuery->fetch_assoc();
-
-                    $FnameRow = $NamesClass["forname"];
-                    $LnameRow = $NamesClass["surname"];
-                    $messageID = $rowClass["Message_ID"];
-                    $messageTitle = $rowClass["Question_Title"];
-                    $messageDescription = $rowClass["Question_Description"];
-                    echo '<button onclick ="replySend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')" class="expandButton">Reply</button>';
-
-                    echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
-                    echo '<b><p class = "displayInline">From: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
-                    echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
-                    echo '<br>';
-                    echo '<b><p class = "displayInline">Question: </p></b> <p id = '.$QuestionDescription.' class = "displayInline">'.$messageDescription.'</p>';
-                    echo '<br>';
-                    echo '<br>';
-                ?>
-        <?php endwhile; ?>
+                        echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
+                        echo '<b><p class = "displayInline">From: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
+                        echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
+                        echo '<br>';
+                        echo '<b><p class = "displayInline">Question: </p></b> <p id = '.$QuestionDescription.' class = "displayInline">'.$messageDescription.'</p>';
+                        echo '<br>';
+                        echo '<br>';
+                    ?>
+                <?php endwhile; ?>
+            
         </section>
     </section>
 
@@ -132,5 +152,28 @@ if($numStudent == 0){
 
             }
         ?>
-    </body>
+        <script>
+            var selectHelp = document.getElementById("myhelp");
+            var sentMessage = document.getElementById("messageSuccess");
+
+            var btn = document.getElementById("helpBtn");
+            var span = document.getElementById("helpClose");
+
+            btn.onclick = function() {
+                selectHelp.style.display = "block";
+            }
+
+            span.onclick = function() {
+                selectHelp.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == selectHelp) {
+                    selectHelp.style.display = "none";
+                }
+            }
+            
+
+        </script>
+    </main>
 </html>

@@ -29,6 +29,8 @@ if($numStudent == 0){
 <html>
     <head>
     <title>Student Page</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="mystyle.css">
     <style>
         <?php include 'mystyle.css'; ?>
@@ -38,16 +40,12 @@ if($numStudent == 0){
 
     </head>
 
-    <body>
-        <ul>
-        <li><p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p></li>
-
-        <li><a href="MessengerStudent.php">View Messages</a></li>
-
-        <li><a href = "logout.php">Log Out</a></li>
-
-
-        </ul>
+    <main>
+        <nav class="NavBar">
+            <p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p>
+            <a href="MessengerStudent.php"><b>View Messages</b></a>
+            <a href="logout.php"><b>Log out</b></a>
+        </nav>
 
         <?php
             $classPick = "select student_id, class_id from studentdetails_classdetails where student_id = '$ID'";
@@ -92,5 +90,5 @@ if($numStudent == 0){
                     echo '<br>';
                 ?>
             <?php endwhile; ?>
-    </body>
+        </main>
 </html>

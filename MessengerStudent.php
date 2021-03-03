@@ -35,16 +35,13 @@ if($numStudent == 0){
     </style>
     <script src="pageInteraction.js"></script>
     </head>
-    <body>
-    <ul>
+    <main>
 
-    <li><p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p></li>
-
-    <li><a href="studentPage.php">Home</a></li>
-
-    <li><a href = "logout.php">Log Out</a></li>
-    
-    </ul>
+    <nav class="NavBar">
+        <p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p>
+        <a href="studentPage.php"><b>Home</b></a>
+        <a href="logout.php"><b>Log out</b></a>
+    </nav>
 
     <section class = "centerPosClass">
             <section class = "classPosts">
@@ -171,5 +168,5 @@ if($numStudent == 0){
         ?>
         </section>
     </section>
-    </body>
+        </main>
 </html>

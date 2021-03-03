@@ -31,6 +31,8 @@ if($numStudent == 0){
 <html>
     <head>
     <title>Teacher Page</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="mystyle.css">
     <style>
         <?php include 'mystyle.css'; ?>
@@ -38,14 +40,15 @@ if($numStudent == 0){
     <script src="pageInteraction.js"></script>
     </head>
 
-    <body>
-        <ul>
-            <li><p class = "navBarTitle">Welcome <?php echo $Fname; ?> <?php echo $Lname?></p></li>
+    <main>
 
-            <li><a href="MessengerTeacher.php">View Messages</a></li>
+        <nav class="NavBar">
+            <p class = "navBarTitle">Welcome <?php echo $Fname ?> <?php echo $Lname?></p>
+            <a href="MessengerTeacher.php"><b>View Messages</b></a>
+            <a href="logout.php"><b>Log out</b></a>
+        </nav>
 
-            <li><a href = "logout.php">Log Out</a></li>
-        </ul>
+        
         <section class = "centerPosClass">
             <section class = "classPosts">
                 <button onclick="hideContent('classAdd') ,minimise('classDelete') ,minimise('classSearch') ,minimise('helpDelete'), minimise('helpUpdate')">Add Class Work</button>
@@ -334,5 +337,5 @@ if($numStudent == 0){
         ?>
 
     </section>
-    </body>
+        </main>
 </html>
