@@ -58,7 +58,7 @@ if($numStudent == 0){
                     </form>
                 </section>
         <section>
-            <section id = "inbox" class = "hidePost">
+            <section id = "inbox" class = "">
                 <p><b>Inbox</b></p>
             <?php
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answer,Question_Answered from messages where Student_ID = '$ID' && Question_Answered = 1";
