@@ -64,7 +64,7 @@ if($numStudent == 0){
                     $rowClassFind = $resultClassFind->fetch_assoc();
                     echo '<section class = "centerPosClass">';
                         echo '<Section id = "classDisplay" class="classPosts">';
-                            echo '<button onclick="hideContent('.$sectionId.')" class="expandButton">Display</button>';
+                            echo '<button onclick="hideContent('.$sectionId.')" class="expandButton button">Display</button>';
 
                             echo '<p><u><b class="classTitle">Subject: '.$rowClassFind["class_title"].'</b></u></p>';
                             echo '<br>';

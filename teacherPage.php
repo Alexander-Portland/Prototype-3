@@ -48,12 +48,49 @@ if($numStudent == 0){
             <a href="logout.php"><b>Log out</b></a>
         </nav>
 
+        <section id="myhelp" class="help">
+            <section class="helpContent">
+                <span id = "helpClose" class="close">&times;</span>
+                <label class = "loginLabel"><b>Using the teacher's homepage</b></label>
+                <p class = "loginHelpText">To upload, delete and update class content, take the following steps</p>
+                <ol>
+                
+                    <li>To add class content either press the "add" button at the top and manually input the you're upload criteria. Or you can select the class you wish to upload to by pressing the "add" button encapsualted in the selected class, from there take the following steps:</li>
+                        <ul>
+                            <li>Enter the name of the class you wish to asign the content to in the "Class Name" box</li>
+                            <li>Enter the title/topic name of the upload to the "post title" box</li>
+                            <li>Add you're description/goal of the upload to the "description" box</li>
+                            <li>Choose the file you wish to upload by first pressing the "choose file" box</li>
+                            <li>When satisfied with you're upload, submit it by pressing the "upload" button</li>
+                        </ul>
+                    <li>To delete class content either press the "delete" button at the top and manually input the class name and content title you wish to delete. Or you can select the content you wish to delete by the pressing the "delete" button encapsulated in the content you wish to delete then take the following steps:</li>
+                        <ul>
+                            <li>Check that the content you wish to delete has been correctly selected by checking the "class name" and "post title boxes. Finally submit the deletion by pressing the "delete button"</li>
+                        </ul>
+                    <li>To add class content either press the "add" button at the top and manually input the you're upload criteria. Or you can select the class you wish to upload to by pressing the "add" button encapsualted in the selected class, from there take the following steps:</li>
+                        <ul>
+                            <li>Enter the name of the class you wish to asign the update to in the "Class Name" box</li>
+                            <li>Enter the updated title/topic name of the upload to the "post title" box</li>
+                            <li>Add you're updated description/goal of the upload to the "description" box</li>
+                            <li>Choose the updated/unchanged file you wish to upload by first pressing the "choose file" box</li>
+                            <li>When satisfied with you're update, submit it by pressing the "update" button</li>
+                        </ul>
+
+                </ol>
+                <video class = "helpVideo" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </section>
+        </section>
+
         
         <section class = "centerPosClass">
             <section class = "classPosts">
-                <button onclick="hideContent('classAdd') ,minimise('classDelete') ,minimise('classSearch') ,minimise('helpDelete'), minimise('helpUpdate')">Add Class Work</button>
-                <button onclick="hideContent('classDelete') ,minimise('classAdd') ,minimise('classSearch') ,minimise('helpAdd'), minimise('helpUpdate')">Delete post</button>
-                <button onclick="hideContent('classSearch') ,minimise('classAdd') ,minimise('classDelete') ,minimise('helpAdd'), minimise('helpDelete')">Update post</button>
+                <button onclick="hideContent('classAdd') ,minimise('classDelete') ,minimise('classSearch') ,minimise('helpDelete'), minimise('helpUpdate')" class = "button">Add Class Work</button>
+                <button onclick="hideContent('classDelete') ,minimise('classAdd') ,minimise('classSearch') ,minimise('helpAdd'), minimise('helpUpdate') " class = "button">Delete post</button>
+                <button onclick="hideContent('classSearch') ,minimise('classAdd') ,minimise('classDelete') ,minimise('helpAdd'), minimise('helpDelete')" class = "button">Update post</button>
+                <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x><br>
                 <section id = "classAdd" class = "hidePost">
                     <b>Add posts</b>
                     <form method="post" enctype="multipart/form-data">
@@ -114,7 +151,7 @@ if($numStudent == 0){
                         <label>Post Title: </label><input type="text" name="postNameSearchResult" require><br>
                         <label>Description: </label><input type="text" name="classDescriptionSearchResult" required><br>
                         <input type="file" name="myfileUpdate" required><br>
-                        <button name="update">Update</button>
+                        <button name="update" class = "button">Update</button>
                     </form>
                 </section>
             </section>
@@ -138,7 +175,7 @@ if($numStudent == 0){
                     $rowClassFind = $resultClassFind->fetch_assoc();
                     echo '<section class = "centerPosClass">';
                         echo '<section id = "classDisplay" class="classPosts">';
-                            echo '<button onclick="hideContent('.$sectionId.')" class="expandButton">Display</button>';
+                            echo '<button onclick="hideContent('.$sectionId.')" class="expandButton button">Display</button>';
                             
                             echo '<p><u><b class="classTitle">Subject: '.$rowClassFind["class_title"].'</b></u></p>';
                             echo '<br>';
@@ -337,5 +374,28 @@ if($numStudent == 0){
         ?>
 
     </section>
-        </main>
+        <script>
+                var selectHelp = document.getElementById("myhelp");
+                var sentMessage = document.getElementById("messageSuccess");
+
+                var btn = document.getElementById("helpBtn");
+                var span = document.getElementById("helpClose");
+
+                btn.onclick = function() {
+                    selectHelp.style.display = "block";
+                }
+
+                span.onclick = function() {
+                    selectHelp.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == selectHelp) {
+                        selectHelp.style.display = "none";
+                    }
+                }
+                
+
+        </script>
+    </main>
 </html>

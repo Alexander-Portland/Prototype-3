@@ -49,7 +49,7 @@ if($numStudent == 0){
     <section id="myhelp" class="help">
         <section class="helpContent">
             <span id = "helpClose" class="close">&times;</span>
-            <label class = "loginLabel"><b>Using the login page</b></label>
+            <label class = "loginLabel"><b>Using the questions and answers page</b></label>
             <p class = "loginHelpText">To answer question from you're students, follow these steps:</p>
             <ol>
             
@@ -74,6 +74,7 @@ if($numStudent == 0){
     
     <section class = "centerPosClass">
         <section id = "questionReply" class="classPosts">
+                    <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x><br>
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classID" class = "hidePost" required><br>
                         <b><p class = "displayInline">From:</p></b> <p id = "labelFrom" class = "displayInline"></p><br>
@@ -87,7 +88,6 @@ if($numStudent == 0){
 
     <section class = "centerPosClass">
         <section id = "classDisplay" class="classPosts">
-            <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x><br>
 
             <?php
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Teacher_ID = '$ID' && Question_Answered = 0";

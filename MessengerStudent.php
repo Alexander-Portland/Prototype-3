@@ -43,12 +43,36 @@ if($numStudent == 0){
         <a href="logout.php"><b>Log out</b></a>
     </nav>
 
+    <section id="myhelp" class="help">
+        <section class="helpContent">
+            <span id = "helpClose" class="close">&times;</span>
+            <label class = "loginLabel"><b>Using the questions and answers page</b></label>
+            <p class = "loginHelpText">To view you're questions and answers, take the following steps:</p>
+            <ol>
+            
+                <li>Press "inbox" button to view you're questions that have been answered</li>
+                <li>Press "sent" button to view you're questions that have not been answered"</li>
+                <li>Press "add" button to begin writing a new question then take the following steps: </li>
+                <ul>
+                    <li>Enter the username of the teacher you wish to submit the question to in the "Recipient" box</li>
+                    <li>Enter the title of the topic/subject your question is related to in the "Question Title" box</li>
+                    <li>Finally, enter the you'r question in the "Question" box</li>
+                <ul>
+
+            </ol>
+            <video class = "helpVideo" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </section>
+
     <section class = "centerPosClass">
             <section class = "classPosts">
-                <button onclick="hideContent('inbox') ,minimise('sent'), minimise('classAdd')">Inbox</button>
-                <button onclick="hideContent('sent') ,minimise('inbox'), minimise('classAdd')">Sent</button>
-                <button onclick="hideContent('classAdd') ,minimise('inbox'),minimise('sent') ">Add</button>
-                <button onclick="hideContent('')">?</button>
+                <button onclick="hideContent('inbox') ,minimise('sent'), minimise('classAdd')" class= "button">Inbox</button>
+                <button onclick="hideContent('sent') ,minimise('inbox'), minimise('classAdd')" class= "button">Sent</button>
+                <button onclick="hideContent('classAdd') ,minimise('inbox'),minimise('sent')" class= "button">Add</button>
+                <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x>
                 <section id = "classAdd" class = "hidePost">
                     <form method="post" enctype="multipart/form-data">
                         <label>Recipient: </label><input type="text" name="sendName" required><br>
@@ -168,5 +192,33 @@ if($numStudent == 0){
         ?>
         </section>
     </section>
-        </main>
+    <script>
+            var selectHelp = document.getElementById("myhelp");
+            var btn = document.getElementById("helpBtn");
+            var span = document.getElementById("helpClose");
+            
+
+            btn.onclick = function() {
+                selectHelp.style.display = "block";
+            }
+
+            
+
+            span.onclick = function() {
+                selectHelp.style.display = "none";
+            }
+
+            
+
+            window.onclick = function(event) {
+                if (event.target == selectHelp) {
+                    selectHelp.style.display = "none";
+                }
+            }
+
+            
+            
+
+        </script>
+    </main>
 </html>
