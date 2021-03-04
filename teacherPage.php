@@ -87,73 +87,46 @@ if($numStudent == 0){
         
         <section class = "centerPosClass">
             <section class = "classPosts">
-                <button onclick="hideContent('classAdd') ,minimise('classDelete') ,minimise('classSearch') ,minimise('helpDelete'), minimise('helpUpdate')" class = "button">Add Class Work</button>
-                <button onclick="hideContent('classDelete') ,minimise('classAdd') ,minimise('classSearch') ,minimise('helpAdd'), minimise('helpUpdate') " class = "button">Delete post</button>
-                <button onclick="hideContent('classSearch') ,minimise('classAdd') ,minimise('classDelete') ,minimise('helpAdd'), minimise('helpDelete')" class = "button">Update post</button>
-                <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x><br>
-                <section id = "classAdd" class = "hidePost">
-                    <b>Add posts</b>
+                <p id = "addClassTitle" class = "teacherInteractionBoxTitle hidepost">Add Class Work</p>
+                <p id = "deleteClassTitle" class = "teacherInteractionBoxTitle hidepost">Delete Class Work</p>
+                <p id = "updateClassTitle" class = "teacherInteractionBoxTitle hidepost">Update Class Work</p>
+                <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x><br>
+                
+                <section id = "classAdd" class = "hidepost">
                     <form method="post" enctype="multipart/form-data">
-                        <label>Class Name: </label><input type="text" name="className" required><br>
+                        <input type="text" name ="classAddID" class = "hidepost"><br>
+                        <b><p class = "displayInline">Class Name: </p></b> <p id = "className" class = "displayInline"></p><br>
                         <label>Post Title: </label><input type="text" name="postName" require><br>
                         <label>Description: </label><input type="text" name="classDescription" required><br>
                         <input type="file" name="myfile" required><br>
-                        <button name="btn">Upload</button>
-                        <button type = "button" class="loginHelpButton" id= "btnAddHelp" onclick="hideContent('helpAdd')">?</button> 
+                        <button name="btn">Upload</button> 
                     </form>
-
-                    <section id = "helpAdd" class = "hidePost">
-                        <p>To add a new post to a class you need to input the class name into the input "class name",
-                        <br>input the post name into the input "post title", input the post description into the input "description"
-                        <br>and finally press the choose file and select the file you wish to upload and then press the "upload" button
-                        </p>
-                    </section>
-
                 </section>
                 
                 <section id = "classDelete" class = "hidePost">
-                    <b>Delete posts</b>
                     <form method="post" enctype="multipart/form-data">
-                        <label>Class Name: </label><input type="text" name="classNameDelete" required><br>
-                        <label>Post Title: </label><input type="text" name="postNameDelete" require><br>
-                        <button name="btnDelete">Delete</button>
-                        <button type = "button" class="loginHelpButton" id= "btnDeleteHelp" onclick="hideContent('helpDelete')">?</button> 
+                        <input type="text" name ="classDeleteID" class = "hidepost"><br>
+                        <b><p class = "displayInline">Class Name: </p></b><p id = "classNameDelete" class = "displayInline"></p><br> 
+                        <b><p class = "displayInline">Post Title: </p></b><p id = "postNameDelete" class = "displayInline"></p><br>
+                        <b><p>Are you sure you want to delete this?</p></b>
+                        <button name="btnDelete">Yes</button>
+                        <button onclick="maximise('minimise');">No</button>
                     </form>
-                    <section id = "helpDelete" class = "hidePost">
-                        <p>To delete a post you need to input the class name into the input "class name",
-                        <br>input the post name into the input "post title" and finally press the "delete" button
-                        </p>
-                    </section>
                 </section>
 
                 <section id = "classSearch" class = "hidePost">
                     <b>Update posts</b>
                     <form method="post" enctype="multipart/form-data">
-                        <label>Class Name: </label><input type="text" name="classNameSearch" required><br>
+                        <input type="text" name ="classUpdateID" class = "hidePost"><br>
+                        <label>Class Name: </label><p id = "classNameSearch" class = "displayInline"></p><br>
                         <label>Post Title: </label><input type="text" name="postNameSearch" require><br>
                         <label>Description: </label><input type="text" name="classDescriptionSearch" required><br>
                         <input type="file" name="myfileUpdate" required><br>
                         <button name="search">Update</button>
-                        <button type = "button" class="loginHelpButton" id= "btnUpdateHelp" onclick="hideContent('helpUpdate')">?</button> 
                     </form>
-                    <section id = "helpUpdate" class = "hidePost">
-                        <p>To update a post you need to input the class name into the input "class name",
-                        <br>input the post name into the input "post title", input the post description into the input "description"
-                        <br>and finally press the choose file and select the file you wish to update and then press the "update" button
-                        </p>
-                    </section>
                 </section>
 
-                <section id = "update" class = "hidePost">
-                    <b>Update posts</b>
-                    <form method="post" enctype="multipart/form-data">
-                        <label>Class Name: </label><input type="text" name="classNameSearchResult" required><br>
-                        <label>Post Title: </label><input type="text" name="postNameSearchResult" require><br>
-                        <label>Description: </label><input type="text" name="classDescriptionSearchResult" required><br>
-                        <input type="file" name="myfileUpdate" required><br>
-                        <button name="update" class = "button">Update</button>
-                    </form>
-                </section>
+                
             </section>
         </section>
 
@@ -166,6 +139,8 @@ if($numStudent == 0){
             while($rowClass = $resultClass->fetch_assoc()): ?> 
                 <?php 
                     $sectionId = rand();
+                    $classTitle = rand();
+                    $classIDLocation = rand();
                     $classId = $rowClass["class_id"];
                     $classFind = "select class_id, class_title, description from classdetails where class_id = '$classId'";
 
@@ -176,11 +151,11 @@ if($numStudent == 0){
                     echo '<section class = "centerPosClass">';
                         echo '<section id = "classDisplay" class="classPosts">';
                             echo '<button onclick="hideContent('.$sectionId.')" class="expandButton button">Display</button>';
-                            
-                            echo '<p><u><b class="classTitle">Subject: '.$rowClassFind["class_title"].'</b></u></p>';
+                            echo '<p name ="classAddID" id= "'.$classIDLocation.'" class="hidepost">'.$classId.'</p>';
+                            echo '<p id = "'.$classTitle.'"><u><b class="classTitle">'.$rowClassFind["class_title"].'</b></u></p>';
                             echo '<br>';
                             echo $rowClassFind["description"];
-                            echo '<br>';
+                            echo '<br><br><br>';
                             
                             echo '<section id= "'.$sectionId.'" class = "">';
 
@@ -189,17 +164,21 @@ if($numStudent == 0){
                             $numClass = mysqli_num_rows($resultPost);
 
                             while($rowPost = $resultPost->fetch_assoc()){
-                                $editButtonID = rand();
-                                echo '<section>';
-                                    echo '<section>';
-                                        echo '<br><b class="classPostTitle">'.$rowPost['postTitle'].'</b><br>';
-                                        echo '<br class="classPostDescription">'.$rowPost['description'];
-                                        echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a>";
-                                    echo '</section>';
+                                $postId = rand();
+                                $postTitle = rand();
+                                $postDescription = rand();
+                                echo '<section class = "classOutliner">';
+                                        echo '<p name ="postID" id= "'.$postId.'" class="hidepost">'.$rowPost['post_id'].'</p>';
+                                        echo '<br><b id="'.$postTitle.'"class="classPostTitle">'.$rowPost['postTitle'].'</b><br>';
+                                        echo '<br><p class="classPostDescription" id = "'.$postDescription.'">'.$rowPost['description'].'<p>';
+                                        echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a><br>";
+                                        echo '<button onclick ="deleteSend('.$postId.','.$classTitle.','.$postTitle.')" class="button">Delete</button>';
+                                        echo'<button  onclick ="updateSend('.$postId.','.$classTitle.','.$postTitle.','.$postDescription.')" class="button">Update</button>';
                                 echo '</section>';
                                 echo '<br><br>';
                             }
                             echo '</section>';
+                            echo'<button onclick="addSend('.$classIDLocation.','.$classTitle.')" class="button">Add</button>';
                         echo '</section>';
                     echo '</section>';
                     echo '<br>';
@@ -210,55 +189,30 @@ if($numStudent == 0){
                 
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['btn'])){
-                    
-                $className = $_POST['className'];
+                $classId = $_POST['classAddID'];
                 $postName = $_POST['postName'];
                 $classDescription = $_POST['classDescription'];
-                $classPick = "select class_id from classdetails where class_title = '$className'";
+                $classPick = "select class_id from classdetails where class_id = '$classId'";
                 $resultClass = mysqli_query($con,$classPick);
                 $numAddResult = mysqli_num_rows($resultClass);
-
-
                 if($numAddResult == 1){
-                    $resultClassId = $resultClass->fetch_assoc();
-                    $classIdSelect = $resultClassId['class_id'];
-                    $postPick = "select class_id from class_posts where class_id = '$classIdSelect' && postTitle = '$postName'";
-                    $resultPost = mysqli_query($con,$postPick);                    
-                    $numPostResult = mysqli_num_rows($resultPost);
+                    $name = $_FILES['myfile']['name'];
+                    $type = $_FILES['myfile']['type'];
 
-                    if($numPostResult == 1){
-                        echo "<script type='text/javascript'>alert('There is already a post with the same title');</script>";
-                    }
-                    else{
+                    $data = file_get_contents($_FILES['myfile']['tmp_name']);
 
-                            $classCheck = "select id from teacherdetails_classdetails where teacher_id = '$ID' && class_id = '$classIdSelect'";
-                            $classCheckQuery = mysqli_query($con,$classCheck); 
-                            $classCheckQuery =  mysqli_num_rows($classCheckQuery);
-
-                            if($classCheckQuery == 1){
-                                $name = $_FILES['myfile']['name'];
-                                $type = $_FILES['myfile']['type'];
-
-                                $data = file_get_contents($_FILES['myfile']['tmp_name']);
-
-                                $stmt = $dbh->prepare("insert into class_posts values('',?,?,?,?,?,?)");
-                                $stmt->bindParam(1,$classIdSelect);
-                                $stmt->bindParam(2,$postName);
-                                $stmt->bindParam(3,$classDescription);
-                                $stmt->bindParam(4,$name);
-                                $stmt->bindParam(5,$type);
-                                $stmt->bindParam(6,$data);
-                                $stmt->execute();
-                            }
-
-                            else{
-                                echo "<script type='text/javascript'>alert('You cannot upload a post to a class you are not assigned to');</script>";
-                            }
-                        }
-                    }
-                    else{
-                        echo "<script type='text/javascript'>alert('The class you selected does not exist');</script>";
-                    }
+                    $stmt = $dbh->prepare("insert into class_posts values('',?,?,?,?,?,?)");
+                    $stmt->bindParam(1,$classId);
+                    $stmt->bindParam(2,$postName);
+                    $stmt->bindParam(3,$classDescription);
+                    $stmt->bindParam(4,$name);
+                    $stmt->bindParam(5,$type);
+                    $stmt->bindParam(6,$data);
+                    $stmt->execute();
+                }
+                else{
+                    echo "<script type='text/javascript'>alert('upload failed to process');</script>";
+                }
                 }
             ?>
 
@@ -266,43 +220,16 @@ if($numStudent == 0){
 
         <?php
             if(isset($_POST['btnDelete'])){
-
-                $className = $_POST['classNameDelete'];
-                $postTitle = $_POST['postNameDelete'];
-                $classFind = "select class_id from classdetails where class_title = '$className'";
+                $postID = $_POST['classDeleteID'];
+                $classFind = "select post_id from class_posts where post_id = '$postID'";
                 $resultClassFind = mysqli_query($con,$classFind);
                 $numDeleteResult = mysqli_num_rows($resultClassFind);
-
-                $rowClassFind = $resultClassFind->fetch_assoc();
-                $foundClassId = $rowClassFind['class_id'];
-
                 if($numDeleteResult == 1){
-
-                    $classCheck = "select id from teacherdetails_classdetails where teacher_id = '$ID' && class_id = '$foundClassId'";
-                    $classCheckQuery = mysqli_query($con,$classCheck); 
-                    $classCheckQueryCount =  mysqli_num_rows($classCheckQuery);   
-                    if($classCheckQueryCount == 1){
-                        $postFind = "select class_id from class_posts where postTitle = '$postTitle'";
-                        $resultClassNameFind = mysqli_query($con,$postFind);
-                        $numDeletePostResult = mysqli_num_rows($resultClassNameFind);
-
-                        if($numDeletePostResult >= 1){
-                        
-                            $postName = $_POST['postNameDelete'];
-                            $postDelete = "delete from class_posts where class_id = '$foundClassId' && postTitle = '$postName'";
-                            $postDeleteQuery = mysqli_query($con,$postDelete);
-                        }
-                        else{
-                            echo "<script type='text/javascript'>alert('The post you selected does not exist');</script>";
-                        }
-                    }
-                    else{
-                        echo "<script type='text/javascript'>alert('You cannot delete a post to a class you are not assigned to');</script>";
-                    }
-                } 
-
+                    $postDelete = "delete from class_posts where post_id = '$postID'";
+                    $postDeleteQuery = mysqli_query($con,$postDelete);
+                }
                 else{
-                    echo "<script type='text/javascript'>alert('The class you selected does not exist');</script>";
+                    echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
                 }
                 }
             ?>
@@ -310,66 +237,34 @@ if($numStudent == 0){
         <?php
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['search'])){
-                $classNameSearch = $_POST['classNameSearch'];
+                $postID = $_POST['classUpdateID'];
                 $classTitleSearch = $_POST['postNameSearch'];
                 $classDescriptionSearch = $_POST['classDescriptionSearch'];
-                $classFindSearch = "select class_id from classdetails where class_title = '$classNameSearch'";
+
+                $classFindSearch = "select post_id from class_posts where post_id = '$postID'";
 
                 $resultClassFind = mysqli_query($con,$classFindSearch);
                 $numClassResult = mysqli_num_rows($resultClassFind);
-
-                $rowClassFind = $resultClassFind->fetch_assoc();
-
                 if($numClassResult == 1){
-                    $foundClassId = $rowClassFind['class_id'];
-                    
-                    $classCheck = "select id from teacherdetails_classdetails where teacher_id = '$ID' && class_id = '$foundClassId'";
-                    $classCheckQuery = mysqli_query($con,$classCheck); 
-                    $classCheckQueryCount =  mysqli_num_rows($classCheckQuery);
+                    $rowPostFind = $resultClassFind->fetch_assoc();
 
-                    if($classCheckQueryCount == 1){
-                        $classPostSearch = "select post_id from class_posts where postTitle = '$classTitleSearch' && class_id = '$foundClassId'";
-                        $resultPostFind = mysqli_query($con,$classPostSearch);
-                        $numPostResult = mysqli_num_rows($resultPostFind);
+                    $postID = $rowPostFind['post_id'];
+                    $name = $_FILES['myfileUpdate']['name'];
+                    $type = $_FILES['myfileUpdate']['type'];
 
-                        if($numPostResult == 1){
-                            $rowPostFind = $resultPostFind->fetch_assoc();
-
-                            $postID = $rowPostFind['post_id'];
-                            $name = $_FILES['myfileUpdate']['name'];
-                            $type = $_FILES['myfileUpdate']['type'];
-
-                            $data = file_get_contents($_FILES['myfileUpdate']['tmp_name']);
-                          
-                            $update = $dbh->prepare("update class_posts set description = ?, name = ?, mine = ?, data = ? where post_id = ?");
-                            $update->bindParam(1,$classDescriptionSearch);
-                            $update->bindParam(2,$name);
-                            $update->bindParam(3,$type);
-                            $update->bindParam(4,$data);
-                            $update->bindParam(5,$postID);
-                            $update->execute();
-                            
-                            
-                        }
-
-                        
-
-                        else{
-                            echo "<script type='text/javascript'>alert('The post you are searching for does not exist');</script>";
-                        }
-                    }
-                    else{
-                        echo "<script type='text/javascript'>alert('You cannot search a post to a class you are not assigned to');</script>";
-                    }
+                    $data = file_get_contents($_FILES['myfileUpdate']['tmp_name']);
+                  
+                    $update = $dbh->prepare("update class_posts set description = ?, name = ?, mine = ?, data = ? where post_id = ?");
+                    $update->bindParam(1,$classDescriptionSearch);
+                    $update->bindParam(2,$name);
+                    $update->bindParam(3,$type);
+                    $update->bindParam(4,$data);
+                    $update->bindParam(5,$postID);
+                    $update->execute();                    
                 }
                 else{
-                    echo "<script type='text/javascript'>alert('The class you selected does not exist');</script>";
+                    echo "<script type='text/javascript'>alert('Update failed to process');</script>";
                 }
-
-
-                
-        
-
             }
         ?>
 

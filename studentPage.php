@@ -66,21 +66,23 @@ if($numStudent == 0){
                         echo '<Section id = "classDisplay" class="classPosts">';
                             echo '<button onclick="hideContent('.$sectionId.')" class="expandButton button">Display</button>';
 
-                            echo '<p><u><b class="classTitle">Subject: '.$rowClassFind["class_title"].'</b></u></p>';
+                            echo '<p><u><b class="classTitle">'.$rowClassFind["class_title"].'</b></u></p>';
                             echo '<br>';
                             echo $rowClassFind["description"];
-                            echo '<br>';
+                            echo '<br><br><br>';
 
-                            echo '<section id= "'.$sectionId.'" class = "hidePost">';
+                            echo '<section id= "'.$sectionId.'">';
                             
                             $postPick = "select * from  class_posts where class_id = '$classId'";
                             $resultPost = mysqli_query($con,$postPick);
                             $numClass = mysqli_num_rows($resultPost);
 
                             while($rowPost = $resultPost->fetch_assoc()){
-                                echo '<br><b class="classPostTitle">'.$rowPost['postTitle'].'</b><br>';
-                                echo '<br class="classPostDescription">'.$rowPost['description'];
-                                echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a>";
+                                echo '<section class = "classOutliner">';
+                                    echo '<br><b class="classPostTitle">'.$rowPost['postTitle'].'</b><br>';
+                                    echo '<br class="classPostDescription">'.$rowPost['description'];
+                                    echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a><br>";
+                                echo'</section>';
                                 echo '<br><br>';
                             }
                             echo '</section>';

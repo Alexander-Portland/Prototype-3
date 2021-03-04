@@ -37,6 +37,71 @@ function successMesage(messageID){
     messageVar.style.display = "block"
 }
 
+function addSend(addID,classTitle){
+    maximise('classAdd');
+    maximise('addClassTitle');
+    minimise('classDelete');
+    minimise('classSearch');
+    minimise('deleteClassTitle');
+    minimise('updateClassTitle');
+    var addTopicID = document.getElementById(addID).textContent;
+    var classTitleElement = document.getElementById("className");
+    var addClassName = document.getElementById(classTitle).textContent;
+    classTitleElement.innerHTML = addClassName;
+    document.getElementsByName("classAddID")[0].value = addTopicID;
+}
+
+function updateSend(topicID, classTitle, postTitle, postDescription){
+    maximise('classSearch');
+    maximise('updateClassTitle');
+    minimise('classDelete');
+    minimise('classAdd');
+    minimise('addClassTitle');
+    minimise('deleteClassTitle');
+    var classTitleElement = document.getElementById("classNameSearch");
+
+
+    var updateClassName = document.getElementById(classTitle).textContent;
+    var updatePostTitle = document.getElementById(postTitle).textContent;
+    var updatePostDescription = document.getElementById(postDescription).textContent;
+
+    classTitleElement.innerHTML = updateClassName;
+
+    var updateID = document.getElementById(topicID).textContent;
+    document.getElementsByName("classUpdateID")[0].value = updateID;
+    var updatePostTitle = document.getElementById(postTitle).textContent;
+    document.getElementsByName("postNameSearch")[0].value = updatePostTitle;
+    var updatePostDescription = document.getElementById(postDescription).textContent;
+    document.getElementsByName("classDescriptionSearch")[0].value = updatePostDescription;
+
+    
+}
+
+function deleteSend(topicID,classTitle,postName){
+
+    maximise('classDelete');
+    maximise('deleteClassTitle');
+    minimise('classAdd');
+    minimise('classSearch');
+    minimise('addClassTitle');
+    minimise('updateClassTitle');
+    var deleteIDElement = document.getElementsByName("postID");
+    var classTitleElement = document.getElementById("classNameDelete");
+    var postNameElement = document.getElementById("postNameDelete");
+
+    var deleteID = document.getElementById(topicID).textContent;
+    var deleteClassName = document.getElementById(classTitle).textContent;
+    var deleteClassTitle = document.getElementById(postName).textContent;
+    
+    deleteIDElement.value = deleteID;
+    classTitleElement.innerHTML = deleteClassName;
+    postNameElement.innerHTML = deleteClassTitle;
+
+
+    document.getElementsByName("classDeleteID")[0].value = deleteID;
+
+}
+
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     var questionIDElement = document.getElementsByName("classID");
     var fromElement = document.getElementById("labelFrom");
@@ -45,7 +110,7 @@ function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescrip
     var sendID = document.getElementById(QuestionID).textContent;
     var sendName = document.getElementById(QuestionSenderJav).textContent;
     var sendSubject = document.getElementById(QuestionTitleJav).textContent;
-    var sendQuestion = document.getElementById(QuestionDescriptionJav).textContent  ;
+    var sendQuestion = document.getElementById(QuestionDescriptionJav).textContent;
     questionIDElement.value = sendID;
 
     document.getElementsByName("classID")[0].value = sendID;

@@ -42,6 +42,16 @@ body{
   font-size: 18px;
 }
 
+.loginButton{
+  background-color: #4f57c0; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  height: 6vh;
+  margin: auto;
+}
+
 /* Help button positioning */
 .helpButton{
   padding-left: 3vh;
@@ -126,6 +136,20 @@ body{
   color: white;
   padding: 15px 32px;
   text-align: center;
+  height: 6vh;
+  margin: auto;
+  display: inline;
+}
+
+.teacherInteractionBoxTitle{
+  background-color: #4f57c0; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  height: 6vh;
+  margin: auto;
+  display: block;
 }
 
 /* Login page display settings so that the login page works with mobile devices*/
@@ -155,9 +179,10 @@ body{
 
   .button{
     padding: 7px 16px;
-    width: 100%;
     height: 6vh;
+    margin: auto;
     display: block;
+    width: 100%;
   }
   .centerPosClass{
     width: 100%;
@@ -252,6 +277,12 @@ body{
 
 .classPostSeperator{
   padding-top: 5em;
+}
+
+.classOutliner{
+  background-color:rgba(255, 255, 255, 0.808);
+  outline-color: antiquewhite;
+  filter: drop-shadow(0 0 2px #333);
 }
 
 .expandButton{

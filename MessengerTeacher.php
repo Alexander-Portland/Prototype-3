@@ -77,7 +77,7 @@ if($numStudent == 0){
                     <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x><br>
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classID" class = "hidePost" required><br>
-                        <b><p class = "displayInline">From:</p></b> <p id = "labelFrom" class = "displayInline"></p><br>
+                        <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
                         <label>Answer: </label><input type="text" name="replyInput" required><br>
@@ -111,6 +111,7 @@ if($numStudent == 0){
                         $messageID = $rowClass["Message_ID"];
                         $messageTitle = $rowClass["Question_Title"];
                         $messageDescription = $rowClass["Question_Description"];
+                        echo '<section class = "classOutliner">';
                         echo '<button onclick ="replySend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')" class="expandButton">Reply</button>';
 
                         echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
@@ -118,8 +119,8 @@ if($numStudent == 0){
                         echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
                         echo '<br>';
                         echo '<b><p class = "displayInline">Question: </p></b> <p id = '.$QuestionDescription.' class = "displayInline">'.$messageDescription.'</p>';
-                        echo '<br>';
-                        echo '<br>';
+                        echo '</section>';
+                        echo '<br><br>';
                     ?>
                 <?php endwhile; ?>
             

@@ -44,7 +44,7 @@
                 </section>
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <section class = "loginCenter">
-                    <button type="submit" class="loginInputButton button">Login</button>
+                    <button type="submit" class="loginInputButton loginButton">Login</button>
                 </section>
 
             </form>
