@@ -74,7 +74,7 @@ if($numStudent == 0){
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <button onclick="messageInbox()" class= "button">Inbox</button>
                 <button onclick="messageSent()" class= "button">Sent</button>
-                <button onclick="messageAdd()" class= "button">Add</button>
+                <button onclick="messageAdd()" class= "button">Send New Question</button>
             </section>
     </section>
                 <section id = "classAdd" class = "centerPosClass hidePost">
