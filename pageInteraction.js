@@ -32,12 +32,46 @@ function maximise(contentID){
     hideVar.style.display = "block";
 }
 
-function successMesage(messageID){
-    var messageVar = document.getElementById(messageID)
-    messageVar.style.display = "block"
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
+function messageAdd(){
+    maximise('classAdd');
+    minimise('inbox');
+    minimise('sent');
+}
+
+function messageInbox(){
+    maximise('inbox');
+    minimise('classAdd');
+    minimise('sent');
+}
+
+function messageSent(){
+    maximise('sent');
+    minimise('classAdd');
+    minimise('inbox');
+}
+
+function abortMessage(){
+    minimise('sent');
+    minimise('classAdd');
+    minimise('inbox');
+}
+
+function abort(){
+    minimise('classAdd');
+    minimise('addClassTitle');
+    minimise('classDelete');
+    minimise('classSearch');
+    minimise('deleteClassTitle');
+    minimise('updateClassTitle');
 }
 
 function addSend(addID,classTitle){
+    topFunction();
     maximise('classAdd');
     maximise('addClassTitle');
     minimise('classDelete');
@@ -52,6 +86,7 @@ function addSend(addID,classTitle){
 }
 
 function updateSend(topicID, classTitle, postTitle, postDescription){
+    topFunction();
     maximise('classSearch');
     maximise('updateClassTitle');
     minimise('classDelete');
@@ -78,7 +113,7 @@ function updateSend(topicID, classTitle, postTitle, postDescription){
 }
 
 function deleteSend(topicID,classTitle,postName){
-
+    topFunction();
     maximise('classDelete');
     maximise('deleteClassTitle');
     minimise('classAdd');
@@ -103,6 +138,7 @@ function deleteSend(topicID,classTitle,postName){
 }
 
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
+    topFunction();
     var questionIDElement = document.getElementsByName("classID");
     var fromElement = document.getElementById("labelFrom");
     var titleElement = document.getElementById("labelSubject");

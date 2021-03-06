@@ -91,16 +91,18 @@ if($numStudent == 0){
                 <p id = "deleteClassTitle" class = "teacherInteractionBoxTitle hidepost">Delete Class Work</p>
                 <p id = "updateClassTitle" class = "teacherInteractionBoxTitle hidepost">Update Class Work</p>
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x><br>
-                
                 <section id = "classAdd" class = "hidepost">
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classAddID" class = "hidepost"><br>
                         <b><p class = "displayInline">Class Name: </p></b> <p id = "className" class = "displayInline"></p><br>
-                        <label>Post Title: </label><input type="text" name="postName" require><br>
-                        <label>Description: </label><input type="text" name="classDescription" required><br>
+                        <p class = "displayInline"><b>Post Title: </b></p> <input type="text" name="postName" class = "inputButton" required></textarea><br>
+                        <p class = "displayInline"><b>Description: </b></p> <textarea type="text" name="classDescription" class = "textInput" required></textarea><br>
                         <input type="file" name="myfile" required><br>
-                        <button name="btn">Upload</button> 
+                        <p><b>Are you sure you wish to add this to the class?</b></p>
+                        <button name="btn" class = "button buttonGreen">Yes</button> 
+                        <button onclick="abort();" class = "button buttonRed">No</button>
                     </form>
+                    
                 </section>
                 
                 <section id = "classDelete" class = "hidePost">
@@ -109,20 +111,21 @@ if($numStudent == 0){
                         <b><p class = "displayInline">Class Name: </p></b><p id = "classNameDelete" class = "displayInline"></p><br> 
                         <b><p class = "displayInline">Post Title: </p></b><p id = "postNameDelete" class = "displayInline"></p><br>
                         <b><p>Are you sure you want to delete this?</p></b>
-                        <button name="btnDelete">Yes</button>
-                        <button onclick="maximise('minimise');">No</button>
+                        <button name="btnDelete" class = "button buttonGreen">Yes</button>
+                        <button onclick="abort();" class = "button buttonRed">No</button>
                     </form>
                 </section>
 
                 <section id = "classSearch" class = "hidePost">
-                    <b>Update posts</b>
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classUpdateID" class = "hidePost"><br>
                         <label>Class Name: </label><p id = "classNameSearch" class = "displayInline"></p><br>
-                        <label>Post Title: </label><input type="text" name="postNameSearch" require><br>
-                        <label>Description: </label><input type="text" name="classDescriptionSearch" required><br>
+                        <label>Post Title: </label><input type="text" name="postNameSearch" class = "inputButton" required><br>
+                        <label>Description: </label><textarea type="text" name="classDescriptionSearch" class = "textInput" required></textarea><br>
                         <input type="file" name="myfileUpdate" required><br>
-                        <button name="search">Update</button>
+                        <b><p>Are you sure you want to update this?</p></b>
+                        <button name="search" class = "button buttonGreen">Yes</button>
+                        <button onclick="abort();" class = "button buttonRed">No</button>
                     </form>
                 </section>
 
@@ -173,7 +176,7 @@ if($numStudent == 0){
                                         echo '<br><p class="classPostDescription" id = "'.$postDescription.'">'.$rowPost['description'].'<p>';
                                         echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a><br>";
                                         echo '<button onclick ="deleteSend('.$postId.','.$classTitle.','.$postTitle.')" class="button">Delete</button>';
-                                        echo'<button  onclick ="updateSend('.$postId.','.$classTitle.','.$postTitle.','.$postDescription.')" class="button">Update</button>';
+                                        echo'<button  onclick ="updateSend('.$postId.','.$classTitle.','.$postTitle.','.$postDescription.')" class="button">Update</button><br>';
                                 echo '</section>';
                                 echo '<br><br>';
                             }
@@ -254,13 +257,16 @@ if($numStudent == 0){
 
                     $data = file_get_contents($_FILES['myfileUpdate']['tmp_name']);
                   
-                    $update = $dbh->prepare("update class_posts set description = ?, name = ?, mine = ?, data = ? where post_id = ?");
-                    $update->bindParam(1,$classDescriptionSearch);
-                    $update->bindParam(2,$name);
-                    $update->bindParam(3,$type);
-                    $update->bindParam(4,$data);
-                    $update->bindParam(5,$postID);
-                    $update->execute();                    
+                    $update = $dbh->prepare("update class_posts set postTitle = ?, description = ?, name = ?, mine = ?, data = ? where post_id = ?");
+                    $update->bindParam(1,$classTitleSearch);
+                    $update->bindParam(2,$classDescriptionSearch);
+                    $update->bindParam(3,$name);
+                    $update->bindParam(4,$type);
+                    $update->bindParam(5,$data);
+                    $update->bindParam(6,$postID);
+                    $update->execute();   
+                    
+
                 }
                 else{
                     echo "<script type='text/javascript'>alert('Update failed to process');</script>";

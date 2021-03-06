@@ -36,15 +36,15 @@
                     <h2 class ="loginTitle">Welcome Back!</h2>
                     <label class = "loginLabel">Username</label><br>
                     <img src="img\user.png" id="" alt="Missing user picture" class = "helpButton" width = 40px>
-                    <input type="text" name="user" class = "loginInputButton" required >
+                    <input type="text" name="user" class = "inputButton" required >
                     <br>
                     <label class = "loginLabel">Password</label><br>
                     <img src="img\lock.png" id="" alt="Missing lock picture" class = "helpButton" width = 40px>
-                    <input type="password" name="password" class = "loginInputButton" required>
+                    <input type="password" name="password" class = "inputButton" required>
                 </section>
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <section class = "loginCenter">
-                    <button type="submit" class="loginInputButton loginButton">Login</button>
+                    <button type="submit" class="inputButton loginButton">Login</button>
                 </section>
 
             </form>

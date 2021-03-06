@@ -74,21 +74,21 @@ if($numStudent == 0){
     
     <section class = "centerPosClass">
         <section id = "questionReply" class="classPosts">
-                    <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton expandButton" width = 40x><br>
+                    <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton " width = 40x><br>
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classID" class = "hidePost" required><br>
                         <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
-                        <label>Answer: </label><input type="text" name="replyInput" required><br>
+                        <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
                         <button name="reply">Send</button>   
                     </form>
         </section>
     </section>
 
     <section class = "centerPosClass">
-        <section id = "classDisplay" class="classPosts">
-
+        <section id = "classDisplay" class="classPosts"> 
+            <p class = "teacherInteractionBoxTitle">Inbox</p>  
             <?php
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Teacher_ID = '$ID' && Question_Answered = 0";
             $resultClass = mysqli_query($con,$classPick);
@@ -111,8 +111,8 @@ if($numStudent == 0){
                         $messageID = $rowClass["Message_ID"];
                         $messageTitle = $rowClass["Question_Title"];
                         $messageDescription = $rowClass["Question_Description"];
-                        echo '<section class = "classOutliner">';
-                        echo '<button onclick ="replySend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')" class="expandButton">Reply</button>';
+                        echo '<br><section class = "classOutliner">';
+                        echo '<button onclick ="replySend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')" class="expandButton button">Reply</button>';
 
                         echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
                         echo '<b><p class = "displayInline">From: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
@@ -140,7 +140,6 @@ if($numStudent == 0){
                 $rowMessageFind = $resultMessageFind->fetch_assoc();
 
                 if($numMessageResult == 1){
-                          
                             $update = $dbh->prepare("update messages set Question_Answer = ?, Question_Answered = 1 where Message_ID = ?");
                             $update->bindParam(1,$replyAnswer);
                             $update->bindParam(2,$replyMessageID);
