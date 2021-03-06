@@ -75,14 +75,18 @@ if($numStudent == 0){
     <section class = "centerPosClass">
         <section id = "questionReply" class="classPosts">
                     <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton " width = 40x><br>
-                    <form method="post" enctype="multipart/form-data">
-                        <input type="text" name ="classID" class = "hidePost" required><br>
-                        <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
-                        <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
-                        <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
-                        <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
-                        <button name="reply">Send</button>   
-                    </form>
+                    <section id = "replyContent" class = "hidepost">
+                        <form method="post" enctype="multipart/form-data">
+                            <input type="text" name ="classID" class = "hidePost" required><br>
+                            <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
+                            <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
+                            <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
+                            <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
+                            <p><b>Are you sure you want to send this answer?</b></p>
+                            <button name="reply" class = "button buttonGreen">Yes</button>
+                            <button onclick="abortTeacherMessage()" class = "button buttonRed">No</button>    
+                        </form>
+                    </section>
         </section>
     </section>
 
@@ -93,6 +97,7 @@ if($numStudent == 0){
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Teacher_ID = '$ID' && Question_Answered = 0";
             $resultClass = mysqli_query($con,$classPick);
             $numClass = mysqli_num_rows($resultClass);
+            if($numClass >= 1){
                 while($rowClass = $resultClass->fetch_assoc()): ?> 
                     <?php
                         $QuestionID = rand();
@@ -122,7 +127,12 @@ if($numStudent == 0){
                         echo '</section>';
                         echo '<br><br>';
                     ?>
-                <?php endwhile; ?>
+                <?php endwhile; 
+                }
+                else{
+                    echo '<p>You have zero questions to answer.</p>';
+                }
+                ?>
             
         </section>
     </section>
@@ -131,7 +141,7 @@ if($numStudent == 0){
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['reply'])){
                 $replyMessageID = $_POST['classID'];
-                $replyAnswer = $_POST['replyInput'];
+                $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
 
                 $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID'";
                 $resultMessageFind = mysqli_query($con, $messageFind);

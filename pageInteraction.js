@@ -39,6 +39,7 @@ function topFunction() {
 
 function messageAdd(){
     maximise('classAdd');
+
     minimise('inbox');
     minimise('sent');
 }
@@ -47,18 +48,44 @@ function messageInbox(){
     maximise('inbox');
     minimise('classAdd');
     minimise('sent');
+    minimise('deleteMessage');
 }
 
 function messageSent(){
     maximise('sent');
     minimise('classAdd');
     minimise('inbox');
+    minimise('deleteMessage');
 }
 
 function abortMessage(){
     minimise('sent');
     minimise('classAdd');
     minimise('inbox');
+    minimise('deleteMessage');
+
+    var blank = "";
+    document.getElementsByName("questionTitle")[0].value = blank;
+    document.getElementsByName("sendQuestion")[0].value = blank;
+}
+
+function abortDeleteMessage(){
+    minimise('deleteMessage');
+}
+
+function abortTeacherMessage(){
+    minimise('replyContent');
+    var fromElement = document.getElementById("labelFrom");
+    var titleElement = document.getElementById("labelSubject");
+    var descriptionElement = document.getElementById("labelQuestion");
+    var blank = "";
+
+    document.getElementsByName("classID")[0].value = blank;
+    fromElement.innerHTML = blank;
+    titleElement.innerHTML = blank;
+    descriptionElement.innerHTML = blank;
+
+
 }
 
 function abort(){
@@ -137,8 +164,27 @@ function deleteSend(topicID,classTitle,postName){
 
 }
 
+function messageDeleteSend(deleteMessageID, deleteMessageTo, deleteMessageSubject,deleteMessageQuestion){
+    topFunction();
+    maximise('deleteMessage');
+    minimise('inbox');
+    minimise('sent');
+    var fromElement = document.getElementById("deleteMessageTo");
+    var titleElement = document.getElementById("deleteMessageSubject");
+    var descriptionElement = document.getElementById("deleteMessageQuestion");
+    var sendDeleteID = document.getElementById(deleteMessageID).textContent;
+    var sendDeleteTo = document.getElementById(deleteMessageTo).textContent;
+    var sendDeleteSubject = document.getElementById(deleteMessageSubject).textContent;
+    var sendDeleteQuestion = document.getElementById(deleteMessageQuestion).textContent;
+    document.getElementsByName("messageDeleteID")[0].value = sendDeleteID;
+    fromElement.innerHTML = sendDeleteTo;
+    titleElement.innerHTML = sendDeleteSubject;
+    descriptionElement.innerHTML = sendDeleteQuestion;
+}
+
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     topFunction();
+    maximise('replyContent');
     var questionIDElement = document.getElementsByName("classID");
     var fromElement = document.getElementById("labelFrom");
     var titleElement = document.getElementById("labelSubject");

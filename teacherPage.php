@@ -193,8 +193,9 @@ if($numStudent == 0){
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['btn'])){
                 $classId = $_POST['classAddID'];
-                $postName = $_POST['postName'];
-                $classDescription = $_POST['classDescription'];
+                $postName = htmlspecialchars($_POST['postName'],ENT_COMPAT);
+                $classDescription = htmlspecialchars($_POST['classDescription'],ENT_COMPAT);
+
                 $classPick = "select class_id from classdetails where class_id = '$classId'";
                 $resultClass = mysqli_query($con,$classPick);
                 $numAddResult = mysqli_num_rows($resultClass);
@@ -241,9 +242,8 @@ if($numStudent == 0){
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['search'])){
                 $postID = $_POST['classUpdateID'];
-                $classTitleSearch = $_POST['postNameSearch'];
-                $classDescriptionSearch = $_POST['classDescriptionSearch'];
-
+                $classTitleSearch = htmlspecialchars($_POST['postNameSearch'],ENT_COMPAT);
+                $classDescriptionSearch = htmlspecialchars($_POST['classDescriptionSearch'],ENT_COMPAT);
                 $classFindSearch = "select post_id from class_posts where post_id = '$postID'";
 
                 $resultClassFind = mysqli_query($con,$classFindSearch);

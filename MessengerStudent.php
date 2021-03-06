@@ -110,12 +110,27 @@ if($numStudent == 0){
                         </select><br>
                         <label><b>Question Title: </b></label><input type="text" name="questionTitle" class = "inputButton" required><br>
                         <label><b>Question:  </b></label><textarea type="text" name="sendQuestion" class = "textInput" required></textarea><br>
+                        <p><b>Are you sure you want to send this question?</b></p>
                         <button name="btnSendQuestion" class = "button buttonGreen">Yes</button>
                         <button onclick="abortMessage()" class = "button buttonRed">No</button>   
                     </form>
                 </section>
             </section>
 
+            <section id = "deleteMessage" class = "centerPosClass hidePost">
+                <section class = "classPosts">
+                <p class = "teacherInteractionBoxTitle">Delete Message</p> 
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="text" name ="messageDeleteID" class = "hidepost"><br>
+                        <b><p class = "displayInline">To: </p></b><p id = "deleteMessageTo" class = "displayInline"></p><br> 
+                        <b><p class = "displayInline">Subject: </p></b><p id = "deleteMessageSubject" class = "displayInline"></p><br>
+                        <b><p class = "displayInline">Question: </p></b><p id = "deleteMessageQuestion" class = "displayInline"></p><br>
+                        <b><p>Are you sure you want to delete this?</p></b>
+                        <button name="btnDelete" class = "button buttonGreen">Yes</button>
+                        <button onclick="abortDeleteMessage()" class = "button buttonRed">No</button>
+                    </form>
+                </section>
+            </section>
     
     
             <section id = "inbox" class = "centerPosClass hidePost"> 
@@ -125,6 +140,7 @@ if($numStudent == 0){
                     $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answer,Question_Answered from messages where Student_ID = '$ID' && Question_Answered = 1";
                     $resultClass = mysqli_query($con,$classPick);
                     $numClass = mysqli_num_rows($resultClass);
+                    if($numClass >= 1){
                             while($rowClass = $resultClass->fetch_assoc()): ?> 
                                 <?php
                                     $QuestionID = rand();
@@ -145,7 +161,8 @@ if($numStudent == 0){
                                     $messageDescription = $rowClass["Question_Description"];
                                     $QuestionAnswer = $rowClass["Question_Answer"];
                                     echo '<br><section class = "classOutliner">';
-                                    echo'<button class = "button expandButton">Delete</button>';
+                                    echo'<button class = "button expandButton" onclick = "messageDeleteSend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')">Delete</button>';
+                                    echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
                                     echo '<b><p class = "displayInline">To: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
                                     echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
                                     echo '<br>';
@@ -153,8 +170,14 @@ if($numStudent == 0){
                                     echo '<br>';
                                     echo '<b><p class = "displayInline">Answer: </p></b> <p class = "displayInline">'.$QuestionAnswer.'</p>';
                                     echo '</section>';
-                                ?> 
-                        <?php endwhile;?>
+                                ?>
+                                 
+                        <?php endwhile;
+                        }
+                        else{
+                            echo '<p>Inbox is empty, you have either not submitted a question or none of the questions have been answered</p>';
+                        }
+                        ?>
                     </section>
             </section>
 
@@ -166,47 +189,51 @@ if($numStudent == 0){
                 $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Student_ID = '$ID' && Question_Answered = 0";
                 $resultClass = mysqli_query($con,$classPick);
                 $numClass = mysqli_num_rows($resultClass);
+                if($numClass >= 1){
+                    while($rowClass = $resultClass->fetch_assoc()): ?> 
+                    <?php
+                        $QuestionID = rand();
+                        $QuestionSender = rand();
+                        $QuestionTitle = rand();
+                        $QuestionDescription = rand();
+                        $teacherID = $rowClass["Teacher_ID"];
 
-                while($rowClass = $resultClass->fetch_assoc()): ?> 
-                <?php
-                    $QuestionID = rand();
-                    $QuestionSender = rand();
-                    $QuestionTitle = rand();
-                    $QuestionDescription = rand();
-                    $teacherID = $rowClass["Teacher_ID"];
+                        $studentFnamePick = "select teacher_forname, teacher_surname from teacherdetails where teacher_id = '$teacherID'";
+                        $studentQuery = mysqli_query($con,$studentFnamePick);
 
-                    $studentFnamePick = "select teacher_forname, teacher_surname from teacherdetails where teacher_id = '$teacherID'";
-                    $studentQuery = mysqli_query($con,$studentFnamePick);
+                        $NamesClass = $studentQuery->fetch_assoc();
 
-                    $NamesClass = $studentQuery->fetch_assoc();
-
-                    $FnameRow = $NamesClass["teacher_forname"];
-                    $LnameRow = $NamesClass["teacher_surname"];
-                    $messageID = $rowClass["Message_ID"];
-                    $messageTitle = $rowClass["Question_Title"];
-                    $messageDescription = $rowClass["Question_Description"];
-                    echo '<br><section class = "classOutliner">';
-                        echo'<button class = "button expandButton">Delete</button>';
-                        echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
-                        echo '<b><p class = "displayInline">To: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
-                        echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
-                        echo '<br>';
-                        echo '<b><p class = "displayInline">Question: </p></b> <p id = '.$QuestionDescription.' class = "displayInline">'.$messageDescription.'</p>';
-                    echo '</section>';
-                    echo '<br><br>';
+                        $FnameRow = $NamesClass["teacher_forname"];
+                        $LnameRow = $NamesClass["teacher_surname"];
+                        $messageID = $rowClass["Message_ID"];
+                        $messageTitle = $rowClass["Question_Title"];
+                        $messageDescription = $rowClass["Question_Description"];
+                        echo '<br><section class = "classOutliner">';
+                            echo'<button class = "button expandButton" onclick = "messageDeleteSend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')">Delete</button>';
+                            echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
+                            echo '<b><p class = "displayInline">To: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
+                            echo '<b><p class = "displayInline">Subject: </p></b> <p id = '.$QuestionTitle.' class = "displayInline">'.$messageTitle.'</p>';
+                            echo '<br>';
+                            echo '<b><p class = "displayInline">Question: </p></b> <p id = '.$QuestionDescription.' class = "displayInline">'.$messageDescription.'</p>';
+                        echo '</section>';
+                        echo '<br><br>';
+                    ?>
+                    <?php endwhile;
+                }
+                else{
+                    echo '<p>You have not submitted any questions</p>';
+                }
                 ?>
-                <?php endwhile;?>
                 </section>
             </section>
         
-
         <?php 
                 
             $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
             if(isset($_POST['btnSendQuestion'])){
                 $sendName = $_POST['sendName'];
-                $sendTitle = $_POST['questionTitle'];
-                $sendQuestion = $_POST['sendQuestion'];
+                $sendTitle = htmlspecialchars($_POST['questionTitle'],ENT_COMPAT);
+                $sendQuestion = htmlspecialchars($_POST['sendQuestion'],ENT_COMPAT);
                 $teacherQuery = "select teacher_id from teacherdetails where teacher_id = '$sendName'";
                 $resultTeacher = mysqli_query($con,$teacherQuery);
                 $numResultTeacher = mysqli_num_rows($resultTeacher);
@@ -215,7 +242,6 @@ if($numStudent == 0){
                     echo "<script type='text/javascript'>alert('The teacher you selected does not exist');</script>";
                 }
                 else{
-                    echo "<script type='text/javascript'>alert('Success');</script>";
                     $teacherSelect = $resultTeacher->fetch_assoc();
                     $teacherID = $teacherSelect['teacher_id'];
                     $stmt = $dbh->prepare("insert into messages values('',?,?,?,?,0,'')");
@@ -227,6 +253,25 @@ if($numStudent == 0){
                 }
             }
         ?>
+
+        
+
+        <?php
+            if(isset($_POST['btnDelete'])){
+                $messageID = $_POST['messageDeleteID'];
+                $messageFind = "select Message_ID from messages where Message_ID = '$messageID'";
+                $resultClassFind = mysqli_query($con,$messageFind);
+                $numDeleteResult = mysqli_num_rows($resultClassFind);
+                if($numDeleteResult == 1){
+                    $postDelete = "delete from messages where Message_ID = '$messageID'";
+                    $postDeleteQuery = mysqli_query($con,$postDelete);
+                }
+                else{
+                    echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
+                }
+                }
+            ?>
+
     <script>
             var selectHelp = document.getElementById("myhelp");
             var btn = document.getElementById("helpBtn");
