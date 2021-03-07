@@ -39,7 +39,7 @@ function topFunction() {
 
 function messageAdd(){
     maximise('classAdd');
-
+    minimise('deleteMessage');
     minimise('inbox');
     minimise('sent');
 }
