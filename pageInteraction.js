@@ -58,6 +58,37 @@ function messageSent(){
     minimise('deleteMessage');
 }
 
+function viewClasses(){
+    topFunction();
+    maximise('classViewer');
+    minimise('classAdd');
+    minimise('updateClass');
+    minimise('deleteMessage');
+}
+
+function addClass(){
+    topFunction();
+    minimise('classViewer');
+    minimise('deleteClass');
+    maximise('classAdd');
+    minimise('updateClass');
+}
+
+function closeAddClass(){
+    topFunction();
+    minimise('classAdd');
+}
+
+function closeDeleteClass(){
+    topFunction();
+    minimise('deleteClass');
+}
+
+function closeUpdateClass(){
+    topFunction();
+    minimise('updateClass');
+}
+
 function abortMessage(){
     minimise('sent');
     minimise('classAdd');
@@ -181,6 +212,37 @@ function messageDeleteSend(deleteMessageID, deleteMessageTo, deleteMessageSubjec
     titleElement.innerHTML = sendDeleteSubject;
     descriptionElement.innerHTML = sendDeleteQuestion;
 }
+
+function classDeleteSend(deleteClassID,deleteClassTitle,deleteClassDescription){
+    topFunction();
+    maximise('deleteClass');
+    minimise('classViewer');
+    var deleteID = document.getElementById("classDeleteID");
+    var deleteName = document.getElementById("deleteClassName");
+    var deleteDescription = document.getElementById("deleteClassDescription");
+    var sendDeleteID = document.getElementById(deleteClassID).textContent;
+    var sendDeleteTitle = document.getElementById(deleteClassTitle).textContent;
+    var sendDeleteDescription = document.getElementById(deleteClassDescription).textContent;
+    document.getElementsByName("classDeleteID")[0].value = sendDeleteID;
+    deleteName.innerHTML = sendDeleteTitle;
+    deleteDescription.innerHTML = sendDeleteDescription;
+}
+
+function updateClass(classIdElement, classTitleElement, classDescriptionElement){
+    topFunction();
+    maximise('updateClass');
+    minimise('deleteClass');
+    minimise('classAdd');
+    minimise('classViewer');
+    var classId = document.getElementById(classIdElement).textContent;
+    var classTitle = document.getElementById(classTitleElement).textContent;
+    var classDescription = document.getElementById(classDescriptionElement).textContent;
+    document.getElementsByName("classUpdateID")[0].value = classId;
+    document.getElementsByName("classUpdate")[0].value = classTitle;
+    document.getElementsByName("classDescriptionUpdate")[0].value = classDescription;
+    
+}
+
 
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     topFunction();
