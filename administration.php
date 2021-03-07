@@ -73,14 +73,13 @@ if($numStudent == 0){
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <button onclick="viewClasses()" class= "button">View Classes</button>
                 <button onclick="addClass()" class= "button">Add Classes</button>
-                
             </section>
     </section>
 
     <main>
 
     <section id = "classAdd" class = "centerPosClass hidePost">
-                    <section class = "classPosts">
+            <section class = "classPosts">
                     <form action="addNewClass.php" method="post">
                         <p class = "teacherInteractionBoxTitle">Add New Class</p> 
                         <label><b>Class Title: </b></label><input type="text" name="classNameInput" class = "inputButton" required><br>

@@ -105,18 +105,20 @@ function abortDeleteMessage(){
 }
 
 function abortTeacherMessage(){
-    minimise('replyContent');
-    var fromElement = document.getElementById("labelFrom");
-    var titleElement = document.getElementById("labelSubject");
-    var descriptionElement = document.getElementById("labelQuestion");
-    var blank = "";
+    minimise('questionReply');
+}
 
-    document.getElementsByName("classID")[0].value = blank;
-    fromElement.innerHTML = blank;
-    titleElement.innerHTML = blank;
-    descriptionElement.innerHTML = blank;
+function teacherMessageInbox(){
+    topFunction();
+    maximise('classDisplay');
+    minimise('messageHistory');
+}
 
-
+function teacherMessageHistory(){
+    topFunction();
+    maximise('messageHistory');
+    minimise('classDisplay');
+    minimise('questionReply');
 }
 
 function abort(){
@@ -217,7 +219,6 @@ function classDeleteSend(deleteClassID,deleteClassTitle,deleteClassDescription){
     topFunction();
     maximise('deleteClass');
     minimise('classViewer');
-    var deleteID = document.getElementById("classDeleteID");
     var deleteName = document.getElementById("deleteClassName");
     var deleteDescription = document.getElementById("deleteClassDescription");
     var sendDeleteID = document.getElementById(deleteClassID).textContent;
@@ -246,7 +247,7 @@ function updateClass(classIdElement, classTitleElement, classDescriptionElement)
 
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     topFunction();
-    maximise('replyContent');
+    maximise('questionReply');
     var questionIDElement = document.getElementsByName("classID");
     var fromElement = document.getElementById("labelFrom");
     var titleElement = document.getElementById("labelSubject");

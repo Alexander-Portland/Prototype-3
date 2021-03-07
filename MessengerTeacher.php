@@ -65,33 +65,47 @@ if($numStudent == 0){
         </section>
     </section>
 
-    <section id="messageSuccess" class="help">
-        <section class="helpContent">
-            <label class = "loginLabel"><b>Using the login page</b></label>
-            <button onclick ="successClose()">&times;</button>
+    <section class = "centerPosClass">
+            <section class = "classPosts">
+                <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
+                <button onclick="teacherMessageInbox()" class= "button">Open Inbox</button>
+                <button onclick="teacherMessageHistory()" class= "button">View Question History</button>
+            </section>
+    </section>
+
+    <section id = "questionReply" class = "centerPosClass hidepost">
+        <section class="classPosts">
+            <section id = "replyContent">
+                <p class = "teacherInteractionBoxTitle">Reply</p> 
+                <form method="post" enctype="multipart/form-data">
+                    <input type="text" name ="classID" class = "hidePost" required><br>
+                    <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
+                    <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
+                    <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
+                    <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
+                    <p><b>Are you sure you want to send this answer?</b></p>
+                    <button name="reply" class = "button buttonGreen">Yes</button>
+                    <button onclick="abortTeacherMessage()" class = "button buttonRed">No</button>    
+                </form>
+            </section>
         </section>
     </section>
-    
-    <section class = "centerPosClass">
-        <section id = "questionReply" class="classPosts">
-                    <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton " width = 40x><br>
-                    <section id = "replyContent" class = "hidepost">
-                        <form method="post" enctype="multipart/form-data">
-                            <input type="text" name ="classID" class = "hidePost" required><br>
-                            <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
-                            <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
-                            <b><p class = "displayInline">Question:</p></b> <p id = "labelQuestion" class = "displayInline"></p><br>
-                            <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
-                            <p><b>Are you sure you want to send this answer?</b></p>
-                            <button name="reply" class = "button buttonGreen">Yes</button>
-                            <button onclick="abortTeacherMessage()" class = "button buttonRed">No</button>    
-                        </form>
-                    </section>
+
+    <section id = "messageHistory" class = "centerPosClass hidepost">
+        <section class = "classPosts">
+            <form action="messageHistory.php" method="post">
+                <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Student</p>
+                <label><b>First Name</b></label><input type="text" name="fNameSearch" class = "inputButton" required>
+                <label><b>Last Name</b></label><input type="text" name="lNameSearch" class = "inputButton" required>
+                <p><b>Are you sure you wish to search for this student?</b></p>
+                <button name="historyRequest" class = "button buttonGreen">Yes</button> 
+                <button onclick="abort();" class = "button buttonRed">No</button>
+            </form>
         </section>
     </section>
 
     <section class = "centerPosClass">
-        <section id = "classDisplay" class="classPosts"> 
+        <section id = "classDisplay" class="classPosts hidepost"> 
             <p class = "teacherInteractionBoxTitle">Inbox</p>  
             <?php
             $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Teacher_ID = '$ID' && Question_Answered = 0";
@@ -138,29 +152,29 @@ if($numStudent == 0){
     </section>
 
     <?php
-            $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
-            if(isset($_POST['reply'])){
-                $replyMessageID = $_POST['classID'];
-                $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
+        $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
+        if(isset($_POST['reply'])){
+            $replyMessageID = $_POST['classID'];
+            $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
 
-                $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID'";
-                $resultMessageFind = mysqli_query($con, $messageFind);
-                $numMessageResult = mysqli_num_rows($resultMessageFind);
+            $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID'";
+            $resultMessageFind = mysqli_query($con, $messageFind);
+            $numMessageResult = mysqli_num_rows($resultMessageFind);
 
-                $rowMessageFind = $resultMessageFind->fetch_assoc();
+            $rowMessageFind = $resultMessageFind->fetch_assoc();
 
-                if($numMessageResult == 1){
-                            $update = $dbh->prepare("update messages set Question_Answer = ?, Question_Answered = 1 where Message_ID = ?");
-                            $update->bindParam(1,$replyAnswer);
-                            $update->bindParam(2,$replyMessageID);
-                            $update->execute();
-                        }
+            if($numMessageResult == 1){
+                        $update = $dbh->prepare("update messages set Question_Answer = ?, Question_Answered = 1 where Message_ID = ?");
+                        $update->bindParam(1,$replyAnswer);
+                        $update->bindParam(2,$replyMessageID);
+                        $update->execute();
+                    }
 
-                else{
-                    echo "<script type='text/javascript'>alert('The message you are replying to does not exist');</script>";
-                }
-
+            else{
+                echo "<script type='text/javascript'>alert('The message you are replying to does not exist');</script>";
             }
+
+        }
         ?>
         <script>
             var selectHelp = document.getElementById("myhelp");

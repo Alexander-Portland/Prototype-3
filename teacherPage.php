@@ -95,7 +95,7 @@ if($numStudent == 0){
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name ="classAddID" class = "hidepost"><br>
                         <b><p class = "displayInline">Class Name: </p></b> <p id = "className" class = "displayInline"></p><br>
-                        <p class = "displayInline"><b>Post Title: </b></p> <input type="text" name="postName" class = "inputButton" required></textarea><br>
+                        <p class = "displayInline"><b>Post Title: </b></p> <input type="text" name="postName" class = "inputButton" required><br>
                         <p class = "displayInline"><b>Description: </b></p> <textarea type="text" name="classDescription" class = "textInput" required></textarea><br>
                         <input type="file" name="myfile" required><br>
                         <p><b>Are you sure you wish to add this to the class?</b></p>

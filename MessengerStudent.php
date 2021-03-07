@@ -263,8 +263,8 @@ if($numStudent == 0){
                 $resultClassFind = mysqli_query($con,$messageFind);
                 $numDeleteResult = mysqli_num_rows($resultClassFind);
                 if($numDeleteResult == 1){
-                    $postDelete = "delete from messages where Message_ID = '$messageID'";
-                    $postDeleteQuery = mysqli_query($con,$postDelete);
+                    $postRemove = "update messages set Question_Answered = 2 where Message_ID = $messageID";
+                    $postRemoveQuery = mysqli_query($con,$postRemove);
                 }
                 else{
                     echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
