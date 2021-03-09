@@ -68,7 +68,7 @@ if($numStudent == 0){
 
                             echo '<p><u><b class="classTitle">'.$rowClassFind["class_title"].'</b></u></p>';
                             echo '<br>';
-                            echo $rowClassFind["description"];
+                            echo '<p class = "classPostDescription">'.$rowClassFind["description"].'</p>';
                             echo '<br><br><br>';
 
                             echo '<section id= "'.$sectionId.'">';
@@ -80,16 +80,15 @@ if($numStudent == 0){
                             while($rowPost = $resultPost->fetch_assoc()){
                                 echo '<section class = "classOutliner">';
                                     echo '<br><b class="classPostTitle">'.$rowPost['postTitle'].'</b><br>';
-                                    echo '<br class="classPostDescription">'.$rowPost['description'];
-                                    echo '<br>'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</a><br>";
+                                    echo '<br><p class="classPostDescription">'.$rowPost['description'].'</p>';
+                                    echo '<br><p class="classPostDescription">'."<a href='view.php?post_id=".$rowPost['post_id']."'>".$rowPost['name']."</p></a><br>";
                                 echo'</section>';
                                 echo '<br><br>';
                             }
                             echo '</section>';
                         echo '</section>';
                     echo '</section>';
-                    echo '';
-                    echo '<br>';
+                    
                 ?>
             <?php endwhile; ?>
         </main>

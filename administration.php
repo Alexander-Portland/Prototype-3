@@ -5,6 +5,9 @@ session_start();
 $nameCheck = $_SESSION['username'];
 $passCheck = $_SESSION['password'];
 
+$_SESSION['passName'] = $nameCheck;
+$_SESSION['passPassword'] = $nameCheck;
+
 $con = mysqli_connect('localhost','root','');
 
 mysqli_select_db($con,'demo');
@@ -69,8 +72,7 @@ if($numStudent == 0){
     </section>
 
     <section class = "centerPosClass">
-            <section class = "classPosts 
-            ">
+            <section class = "classPosts">
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <button onclick="viewClasses()" class= "button">View Classes</button>
                 <button onclick="addClass()" class= "button">Add Classes</button>
@@ -81,15 +83,15 @@ if($numStudent == 0){
 
     <main>
 
-    <section id = "classAdd" class = "centerPosClass hidePost">
+    <section id = "classAdd" class = "centerPosClass hidePost" novalidate>
             <section class = "classPosts">
-                    <form action="addNewClass.php" method="post">
+                    <form action="administrationSubmission.php" method="post">
                         <p class = "teacherInteractionBoxTitle">Add New Class</p> 
                         <label><b>Class Title: </b></label><input type="text" name="classNameInput" class = "inputButton" required><br>
                         <label><b>Class Description:  </b></label><textarea type="text" name="classDescriptionInput" class = "textInput" required></textarea><br>
                         <p><b>Are you sure you want to send this question?</b></p>
                         <button name="sendNewClass" class = "button buttonGreen">Yes</button>
-                        <button onclick="closeAddClass()" class = "button buttonRed">No</button>  
+                        <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>  
                     </form> 
             </section>
         </section>
@@ -97,13 +99,13 @@ if($numStudent == 0){
         <section id = "deleteClass" class = "centerPosClass hidePost">
                 <section class = "classPosts">
                     <p class = "teacherInteractionBoxTitle">Delete Class</p> 
-                    <form action="deleteClasses.php" method="post">
+                    <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classDeleteID" class = "hidepost"><br>
                         <label class = "displayInline"><b>Class Name: </b></label><p id = "deleteClassName" class = "displayInline"></p><br> 
                         <label class = "displayInline"><b>Class Description: </b></label><p id = "deleteClassDescription" class = "displayInline"></p><br>
                         <b><p>Are you sure you want to delete this?</p></b>
                         <button name="btnDelete" class = "button buttonGreen">Yes</button>
-                        <button onclick="closeDeleteClass()" class = "button buttonRed">No</button>
+                        <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>
                     </form>
             </section>
         </section>
@@ -111,13 +113,13 @@ if($numStudent == 0){
         <section id = "updateClass" class = "centerPosClass hidePost">
             <section class = "classPosts">
                 <p class = "teacherInteractionBoxTitle">Update Class</p>
-                    <form action="updateClass.php" method="post">
+                    <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classUpdateID" class = "hidePost"><br>
                         <label>Class Name: </label><input type="text" name="classUpdate" class = "inputButton" required><br>
                         <label>Class Description: </label><textarea type="text" name="classDescriptionUpdate" class = "textInput" required></textarea><br>
                         <b><p>Are you sure you want to update this?</p></b>
                         <button name="search" class = "button buttonGreen">Yes</button>
-                        <button onclick="closeUpdateClass()" class = "button buttonRed">No</button>
+                        <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>
                     </form>
             </section>
         </section>
@@ -125,7 +127,7 @@ if($numStudent == 0){
         <section id = "addAcount" class = "centerPosClass hidePost">
             <section class = "classPosts">
                 <p class = "teacherInteractionBoxTitle">Add Account</p>
-                    <form action="addAccount.php" method="post">
+                    <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classUpdateID" class = "hidePost"><br>
                         <label><b>First Name: </b></label><input type="text" name="accountFirstName" class = "inputButton" required><br>
                         <label><b>Last Name: </b></label><input type="text" name="accountLastName" class = "inputButton" required><br>
@@ -138,8 +140,8 @@ if($numStudent == 0){
                         </select>
                         <b><p>Are you sure you want to update this?</p></b>
                         <button name="accountAdd" class = "button buttonGreen">Yes</button>
+                        <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>
                     </form>
-                    <button onclick="closeAddClass()" class = "button buttonRed">No</button>
             </section>
         </section>
 
@@ -155,9 +157,9 @@ if($numStudent == 0){
                             <option value="Admin">Admin</option>
                         </select>
                     <p><b>Are you sure you wish to search for this account?</b></p>
-                    <button name="searchAccountBtn" class = "button buttonGreen">Yes</button> 
+                    <button name="searchAccountBtn" class = "button buttonGreen">Yes</button>
+                    <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button> 
                 </form>
-                <button onclick="" class = "button buttonRed">No</button>
             </section>
         </section>
 

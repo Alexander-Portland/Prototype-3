@@ -78,7 +78,7 @@ if($numStudent == 0){
     </section>
                 <section id = "classAdd" class = "centerPosClass hidePost">
                     <section class = "classPosts">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="MessengerStudentSubmissions.php" method="post">
                         <p class = "teacherInteractionBoxTitle">Send New Question</p> 
                         <label><b>Recipient: </b></label>
                         <select name = "sendName">
@@ -110,7 +110,7 @@ if($numStudent == 0){
                         <label><b>Question:  </b></label><textarea type="text" name="sendQuestion" class = "textInput" required></textarea><br>
                         <p><b>Are you sure you want to send this question?</b></p>
                         <button name="btnSendQuestion" class = "button buttonGreen">Yes</button>
-                        <button onclick="abortMessage()" class = "button buttonRed">No</button>   
+                        <button onclick="abortMessage()" class = "button buttonRed" type = "button">No</button>   
                     </form>
                 </section>
             </section>
@@ -118,14 +118,14 @@ if($numStudent == 0){
             <section id = "deleteMessage" class = "centerPosClass hidePost">
                 <section class = "classPosts">
                 <p class = "teacherInteractionBoxTitle">Delete Message</p> 
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="MessengerStudentSubmissions.php" method="post">
                         <input type="text" name ="messageDeleteID" class = "hidepost"><br>
                         <b><p class = "displayInline">To: </p></b><p id = "deleteMessageTo" class = "displayInline"></p><br> 
                         <b><p class = "displayInline">Subject: </p></b><p id = "deleteMessageSubject" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Question: </p></b><p id = "deleteMessageQuestion" class = "displayInline"></p><br>
                         <b><p>Are you sure you want to delete this?</p></b>
                         <button name="btnDelete" class = "button buttonGreen">Yes</button>
-                        <button onclick="abortDeleteMessage()" class = "button buttonRed">No</button>
+                        <button onclick="abortDeleteMessage()" class = "button buttonRed" type = "button">No</button>
                     </form>
                 </section>
             </section>
@@ -224,52 +224,7 @@ if($numStudent == 0){
                 ?>
                 </section>
             </section>
-        
-        <?php 
                 
-            $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
-            if(isset($_POST['btnSendQuestion'])){
-                $sendName = $_POST['sendName'];
-                $sendTitle = htmlspecialchars($_POST['questionTitle'],ENT_COMPAT);
-                $sendQuestion = htmlspecialchars($_POST['sendQuestion'],ENT_COMPAT);
-                $teacherQuery = "select teacher_id from teacherdetails where teacher_id = '$sendName'";
-                $resultTeacher = mysqli_query($con,$teacherQuery);
-                $numResultTeacher = mysqli_num_rows($resultTeacher);
-
-                if($numResultTeacher == 0){
-                    echo "<script type='text/javascript'>alert('The teacher you selected does not exist');</script>";
-                }
-                else{
-                    $teacherSelect = $resultTeacher->fetch_assoc();
-                    $teacherID = $teacherSelect['teacher_id'];
-                    $stmt = $dbh->prepare("insert into messages values('',?,?,?,?,0,'')");
-                    $stmt->bindParam(1,$ID);
-                    $stmt->bindParam(2,$teacherID);
-                    $stmt->bindParam(3,$sendTitle);
-                    $stmt->bindParam(4,$sendQuestion);
-                    $stmt->execute();
-                }
-            }
-        ?>
-
-        
-
-        <?php
-            if(isset($_POST['btnDelete'])){
-                $messageID = $_POST['messageDeleteID'];
-                $messageFind = "select Message_ID from messages where Message_ID = '$messageID'";
-                $resultClassFind = mysqli_query($con,$messageFind);
-                $numDeleteResult = mysqli_num_rows($resultClassFind);
-                if($numDeleteResult == 1){
-                    $postRemove = "update messages set Question_Answered = 2 where Message_ID = $messageID";
-                    $postRemoveQuery = mysqli_query($con,$postRemove);
-                }
-                else{
-                    echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
-                }
-                }
-            ?>
-
     <script>
             var selectHelp = document.getElementById("myhelp");
             var btn = document.getElementById("helpBtn");

@@ -63,6 +63,7 @@ function viewClasses(){
     maximise('classViewer');
     minimise('classAdd');
     minimise('addAcount');
+    minimise('seachAccount');
 }
 
 function addClass(){
@@ -72,37 +73,36 @@ function addClass(){
     maximise('classAdd');
     minimise('updateClass');
     minimise('addAcount');
+    minimise('seachAccount');
 }
 
-function closeAddClass(){
+function closeOnNo(){
     topFunction();
     minimise('classAdd');
-}
-
-function closeDeleteClass(){
-    topFunction();
     minimise('deleteClass');
-}
-
-function closeUpdateClass(){
-    topFunction();
     minimise('updateClass');
-}
-
-function closeAddClass(){
-    topFunction();
     minimise('addAcount');
+    minimise('seachAccount');
 }
 
 function openSearch(){
     topFunction();
     maximise('seachAccount');
+    minimise('classViewer');
+    minimise('deleteClass');
+    minimise('classAdd');
+    minimise('updateClass');
+    minimise('addAcount');
 }
 
-function closeSearch(){
-    topFunction();
-    minimise('seachAccount');
+function viewAccountCloser(){
+    minimise('accountAddClass');
+    minimise('removeclass');
+    minimise('updateAssignedClass');
+    minimise('accountUpdate');
+    minimise('accountDelete');
 }
+
 
 function addAccount(){
     maximise('addAcount');
@@ -110,6 +110,7 @@ function addAccount(){
     minimise('deleteClass');
     minimise('classAdd');
     minimise('updateClass');
+    minimise('seachAccount');
 }
 
 function abortMessage(){
@@ -121,6 +122,10 @@ function abortMessage(){
     var blank = "";
     document.getElementsByName("questionTitle")[0].value = blank;
     document.getElementsByName("sendQuestion")[0].value = blank;
+}
+
+function abortMessageSearch(){
+    minimise('messageHistory')
 }
 
 function abortDeleteMessage(){
@@ -314,11 +319,6 @@ function deleteAccountSend(selectID,selectDeleteType,selectFname,selectLname,sel
     deleteOutputUsername.innerHTML = sendUsername;
     deleteOutputPassword.innerHTML = sendPassword;
     deleteOutputType.innerHTML = sendType;
-
-    //var  = document.getElementById().textContent;
-    //var  = document.getElementById("");
-    //var  = document.getElementsByName("");
-    
 }
 
 function closeDeleteAccountSend(){

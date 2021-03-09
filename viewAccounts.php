@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    $nameCheck = $_SESSION['username'];
-
+    $nameCheck = $_SESSION['passName'];
+    
     $con = mysqli_connect('localhost','root','');
     
     mysqli_select_db($con,'demo');
@@ -43,12 +43,12 @@
     }
     else{
         $classSearchName = "none";
-        header("Refresh:0; MessengerTeacher.php");
+        header("Refresh:0; administration.php");
     }
 ?>
 <html>
     <head>
-        <title>Messages Histroy result</title>
+        <title>Searched Account</title>
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="mystyle.css">
@@ -80,7 +80,7 @@
                 </select>
                 <b><p>Are you sure you want to add this lesson?</p></b>
                 <button name="btnAddClassAccount" class = "button buttonGreen">Yes</button>
-                <button onclick="closeDeleteAccountSend()" class = "button buttonRed">No</button>
+                <button onclick="viewAccountCloser()" class = "button buttonRed" type = "button">No</button>
             </form>
         </section>
     </section>
@@ -95,7 +95,7 @@
                     <label class = "displayInline"><b>Class Title: </b></label><p id = "classRemoveTitle" class = "displayInline"></p><br>
                     <b><p>Are you sure you want to remove this lesson?</p></b>
                     <button name="btnRemoveClass" class = "button buttonGreen">Yes</button>
-                    <button onclick="closeDeleteAccountSend()" class = "button buttonRed">No</button>
+                    <button onclick="viewAccountCloser()" class = "button buttonRed" type = "button">No</button>
                 </form>
             </section>
         </section>
@@ -124,7 +124,7 @@
                 </select>  
                     <b><p>Are you sure you want to modify this lesson assignment?</p></b>
                     <button name="btnUpdateAssignedClass" class = "button buttonGreen">Yes</button>
-                    <button onclick="" class = "button buttonRed">No</button>
+                    <button onclick="viewAccountCloser()" class = "button buttonRed" type = "button">No</button>
                 </form>
             </section>
         </section>
@@ -141,7 +141,7 @@
                     <label class = "displayInline"><b>Password: </b></label><input type="text" name="Password" class = "inputButton" required><br>
                     <b><p>Are you sure you want to update this account?</p></b>
                     <button name="btnUpdateAccount" class = "button buttonGreen">Yes</button>
-                    <button onclick="closeDeleteAccountSend()" class = "button buttonRed">No</button>
+                    <button onclick="viewAccountCloser()" class = "button buttonRed" type = "button">No</button>
                 </form>
             </section>
         </section>
@@ -159,7 +159,7 @@
                     <label class = "displayInline"><b>Account Type: </b></label><p id = "deleteOutputType" class = "displayInline"></p><br>
                     <b><p>Are you sure you want to Remove this account?</p></b>
                     <button name="btnDeleteAccount" class = "button buttonGreen">Yes</button>
-                    <button  onclick="closeDeleteAccountSend()" class = "button buttonRed">No</button>
+                    <button  onclick="viewAccountCloser()" class = "button buttonRed" type = "button">No</button>
                 </form>
             </section>
         </section>

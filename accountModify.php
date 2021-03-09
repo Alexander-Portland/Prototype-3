@@ -7,7 +7,7 @@
     mysqli_select_db($con,'demo');
 
     $nameCheck = $_SESSION['username'];
-                
+    
     $teacherPick = "select * from admin where admin_username = '$nameCheck' ";
 
     $resultTeacher = mysqli_query($con,$teacherPick);
@@ -107,7 +107,6 @@
         }
     }
     if(isset($_POST['btnRemoveClass'])){
-        echo "<script type='text/javascript'>alert('Removing class');</script>";
         $accountID = htmlspecialchars($_POST['accountRemoveClassID'],ENT_COMPAT);
         $classID = htmlspecialchars($_POST['removeClassID'],ENT_COMPAT);
         $studentType = htmlspecialchars($_POST['removeClassIDAccountType'],ENT_COMPAT);
@@ -144,7 +143,7 @@
 
     }
 
-    header("Refresh:0; administration.php");
+    header("Refresh:0; viewAccounts.php");
     
     
 ?>

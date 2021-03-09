@@ -75,7 +75,7 @@ if($numStudent == 0){
             <section class="classPosts">
                 <section id = "replyContent">
                     <p class = "teacherInteractionBoxTitle">Reply</p> 
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="MessengerTeacherSubmissions.php" method="post">
                         <input type="text" name ="classID" class = "hidePost" required><br>
                         <b><p class = "displayInline">From: </p></b> <p id = "labelFrom" class = "displayInline"></p><br>
                         <b><p class = "displayInline">Subject:</p></b> <p id = "labelSubject" class = "displayInline"></p><br>
@@ -83,7 +83,7 @@ if($numStudent == 0){
                         <label>Answer: </label><textarea type="text" name="replyInput" class = "textInput" required></textarea><br>
                         <p><b>Are you sure you want to send this answer?</b></p>
                         <button name="reply" class = "button buttonGreen">Yes</button>
-                        <button onclick="abortTeacherMessage()" class = "button buttonRed">No</button>    
+                        <button onclick="abortTeacherMessage()" class = "button buttonRed" type = "button">No</button>    
                     </form>
                 </section>
             </section>
@@ -96,8 +96,8 @@ if($numStudent == 0){
                     <label><b>First Name</b></label><input type="text" name="fNameSearch" class = "inputButton" required>
                     <label><b>Last Name</b></label><input type="text" name="lNameSearch" class = "inputButton" required>
                     <p><b>Are you sure you wish to search for this student?</b></p>
-                    <button name="historyRequest" class = "button buttonGreen">Yes</button> 
-                    <button onclick="abort();" class = "button buttonRed">No</button>
+                    <button name="historyRequest" class = "button buttonGreen">Yes</button>
+                    <button onclick="abortMessageSearch();" class = "button buttonRed" type = "button">No</button>
                 </form>
             </section>
         </section>
@@ -148,32 +148,6 @@ if($numStudent == 0){
                 
             </section>
         </section>
-
-        <?php
-            $dbh = new PDO("mysql:host=localhost;dbname=demo","root","");
-            if(isset($_POST['reply'])){
-                $replyMessageID = $_POST['classID'];
-                $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
-
-                $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID'";
-                $resultMessageFind = mysqli_query($con, $messageFind);
-                $numMessageResult = mysqli_num_rows($resultMessageFind);
-
-                $rowMessageFind = $resultMessageFind->fetch_assoc();
-
-                if($numMessageResult == 1){
-                            $update = $dbh->prepare("update messages set Question_Answer = ?, Question_Answered = 1 where Message_ID = ?");
-                            $update->bindParam(1,$replyAnswer);
-                            $update->bindParam(2,$replyMessageID);
-                            $update->execute();
-                        }
-
-                else{
-                    echo "<script type='text/javascript'>alert('The message you are replying to does not exist');</script>";
-                }
-
-            }
-            ?>
             <script>
                 var selectHelp = document.getElementById("myhelp");
                 var sentMessage = document.getElementById("messageSuccess");
