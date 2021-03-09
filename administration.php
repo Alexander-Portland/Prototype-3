@@ -69,10 +69,13 @@ if($numStudent == 0){
     </section>
 
     <section class = "centerPosClass">
-            <section class = "classPosts">
+            <section class = "classPosts 
+            ">
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <button onclick="viewClasses()" class= "button">View Classes</button>
                 <button onclick="addClass()" class= "button">Add Classes</button>
+                <button onclick="addAccount()" class= "button">Add Account</button>
+                <button onclick="()" class= "button">Search</button>
             </section>
     </section>
 
@@ -116,6 +119,45 @@ if($numStudent == 0){
                         <button name="search" class = "button buttonGreen">Yes</button>
                         <button onclick="closeUpdateClass()" class = "button buttonRed">No</button>
                     </form>
+            </section>
+        </section>
+
+        <section id = "addAcount" class = "centerPosClass hidePost">
+            <section class = "classPosts">
+                <p class = "teacherInteractionBoxTitle">Add Account</p>
+                    <form action="addAccount.php" method="post">
+                        <input type="text" name ="classUpdateID" class = "hidePost"><br>
+                        <label><b>First Name: </b></label><input type="text" name="accountFirstName" class = "inputButton" required><br>
+                        <label><b>Last Name: </b></label><input type="text" name="accountLastName" class = "inputButton" required><br>
+                        <label><b>User Name: </b></label><input type="text" name="accountUserName" class = "inputButton" required><br>
+                        <label><b>Password: </b></label><input type="text" name="accountPassword" class = "inputButton" required><br>
+                        <label class = "displayInline"><b>Account type: </b></label><select name = "accountTypeSelect">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <b><p>Are you sure you want to update this?</p></b>
+                        <button name="accountAdd" class = "button buttonGreen">Yes</button>
+                        <button onclick="closeUpdateClass()" class = "button buttonRed">No</button>
+                    </form>
+            </section>
+        </section>
+
+        <section id = "seachAccount" class = "centerPosClass ">
+            <section class = "classPosts">
+                <form action="viewAccounts.php" method="post">
+                    <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Student</p>
+                    <label><b>First Name</b></label><input type="text" name="fNameSearch" class = "inputButton" required>
+                    <label><b>Last Name</b></label><input type="text" name="lNameSearch" class = "inputButton" required>
+                    <label class = "displayInline"><b>Account type: </b></label><select name = "searchAccountType">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    <p><b>Are you sure you wish to search for this student?</b></p>
+                    <button name="searchAccountBtn" class = "button buttonGreen">Yes</button> 
+                    <button onclick="abort();" class = "button buttonRed">No</button>
+                </form>
             </section>
         </section>
 

@@ -135,8 +135,9 @@ body{
   border: none;
   color: white;
   padding: 15px 32px;
+  width: 20vh;
   text-align: center;
-  height: 6vh;
+  height: 7vh;
   margin: auto;
   margin-left: 5px;
   display: inline;

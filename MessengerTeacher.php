@@ -67,7 +67,7 @@ if($numStudent == 0){
                 <section class = "classPosts">
                     <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                     <button onclick="teacherMessageInbox()" class= "button">Open Inbox</button>
-                    <button onclick="teacherMessageHistory()" class= "button">View Question History</button>
+                    <button onclick="teacherMessageHistory()" class= "button">View History</button>
                 </section>
         </section>
 

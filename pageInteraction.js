@@ -62,8 +62,7 @@ function viewClasses(){
     topFunction();
     maximise('classViewer');
     minimise('classAdd');
-    minimise('updateClass');
-    minimise('deleteMessage');
+    minimise('addAcount');
 }
 
 function addClass(){
@@ -72,6 +71,7 @@ function addClass(){
     minimise('deleteClass');
     maximise('classAdd');
     minimise('updateClass');
+    minimise('addAcount');
 }
 
 function closeAddClass(){
@@ -86,6 +86,14 @@ function closeDeleteClass(){
 
 function closeUpdateClass(){
     topFunction();
+    minimise('updateClass');
+}
+
+function addAccount(){
+    maximise('addAcount');
+    minimise('classViewer');
+    minimise('deleteClass');
+    minimise('classAdd');
     minimise('updateClass');
 }
 
@@ -262,4 +270,78 @@ function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescrip
     fromElement.innerHTML = sendName;
     titleElement.innerHTML = sendSubject;
     descriptionElement.innerHTML = sendQuestion;
+}
+
+
+function deleteAccountSend(selectID,selectDeleteType,selectFname,selectLname,selectUsername,selectPassword){
+    topFunction();
+    maximise('accountDelete');
+    minimise('accountAddClass')
+    minimise('accountUpdate');
+
+    var deleteOutputFName = document.getElementById("deleteOutputFName");
+    var deleteOutputLName = document.getElementById("deleteOutputLName");
+    var deleteOutputUsername = document.getElementById("deleteOutputUserName");
+    var deleteOutputPassword = document.getElementById("deleteOutputPassword");
+    var deleteOutputType = document.getElementById("deleteOutputType");
+
+    var sendAccountID = document.getElementById(selectID).textContent;
+    var sendType = document.getElementById(selectDeleteType).textContent;
+    var sendFname = document.getElementById(selectFname).textContent;
+    var sendLname = document.getElementById(selectLname).textContent;
+    var sendUsername = document.getElementById(selectUsername).textContent;
+    var sendPassword = document.getElementById(selectPassword).textContent;
+
+    document.getElementsByName("accountDeleteID")[0].value = sendAccountID;
+    document.getElementsByName("accountDeleteType")[0].value = sendType;
+    deleteOutputFName.innerHTML = sendFname;
+    deleteOutputLName.innerHTML = sendLname;
+    deleteOutputUsername.innerHTML = sendUsername;
+    deleteOutputPassword.innerHTML = sendPassword;
+    deleteOutputType.innerHTML = sendType;
+
+    //var  = document.getElementById().textContent;
+    //var  = document.getElementById("");
+    //var  = document.getElementsByName("");
+    
+}
+
+function closeDeleteAccountSend(){
+    minimise('accountDelete');
+}
+
+function updateAccountSend(selectID,selectUpdateType,selectFname,selectLname,selectUsername,selectPassword){
+    topFunction();
+    minimise('accountDelete');
+    minimise('accountAddClass')
+    maximise('accountUpdate');
+
+    var sendAccountID = document.getElementById(selectID).textContent;
+    var sendType = document.getElementById(selectUpdateType).textContent;
+    var sendFname = document.getElementById(selectFname).textContent;
+    var sendLname = document.getElementById(selectLname).textContent;
+    var sendUsername = document.getElementById(selectUsername).textContent;
+    var sendPassword = document.getElementById(selectPassword).textContent;
+
+    document.getElementsByName("accountUpdateID")[0].value = sendAccountID;
+    document.getElementsByName("accountUpdateType")[0].value = sendType;
+    document.getElementsByName("Fname")[0].value = sendFname;
+    document.getElementsByName("Lname")[0].value = sendLname;
+    document.getElementsByName("Username")[0].value = sendUsername;
+    document.getElementsByName("Password")[0].value = sendPassword;
+    document.getElementsByName("accountType")[0].value = sendType;
+    deleteOutputFName.innerHTML = sendFname;
+}
+
+function addAccountSend(selectID, selectAddType){
+    topFunction();
+    maximise('accountAddClass');
+
+    minimise('accountDelete');
+    minimise('accountUpdate');
+    var sendAccountID = document.getElementById(selectID).textContent;
+    var sendAccountType = document.getElementById(selectAddType).textContent;
+
+    document.getElementsByName("accountAddClassID")[0].value = sendAccountID;
+    document.getElementsByName("accountAddType")[0].value = sendAccountType;
 }

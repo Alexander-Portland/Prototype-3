@@ -11,9 +11,6 @@
     if(isset($_POST['sendNewClass'])){
     $classTitle = htmlspecialchars($_POST['classNameInput'],ENT_COMPAT);
     $classDescription = htmlspecialchars($_POST['classDescriptionInput'],ENT_COMPAT);
-    
-    $budget = $_POST['budget'];
-    $upperboundBudget = $budget * 1000;
 
     $classQuery = "select * from classdetails where class_title = '$classTitle'";
     $resultclass = mysqli_query($con,$classQuery);
@@ -28,6 +25,7 @@
         $stmt->bindParam(1,$classTitle);
         $stmt->bindParam(2,$classDescription);
         $stmt->execute();
+
         header("Refresh:0; administration.php");
     }
     }

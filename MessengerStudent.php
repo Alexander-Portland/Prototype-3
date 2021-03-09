@@ -103,7 +103,6 @@ if($numStudent == 0){
                                             ?>
                                         <?php endwhile; 
                                         ?>
-                                    ?>
                                 <?php endwhile; 
                             ?>
                         </select><br>
