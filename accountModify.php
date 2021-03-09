@@ -106,6 +106,44 @@
             }
         }
     }
+    if(isset($_POST['btnRemoveClass'])){
+        echo "<script type='text/javascript'>alert('Removing class');</script>";
+        $accountID = htmlspecialchars($_POST['accountRemoveClassID'],ENT_COMPAT);
+        $classID = htmlspecialchars($_POST['removeClassID'],ENT_COMPAT);
+        $studentType = htmlspecialchars($_POST['removeClassIDAccountType'],ENT_COMPAT);
+
+        if($studentType == "Student"){
+            $removeClassQuery = "delete from studentdetails_classdetails where student_id = '$accountID' && class_id = '$classID'";
+            $removeClassQueryExecute = mysqli_query($con,$removeClassQuery);
+            header("Refresh:0; administration.php");
+        }
+        elseif($studentType == "Teacher"){
+            $removeClassQuery = "delete from teacherdetails_classdetails where teacher_id = '$accountID' && class_id = '$classID'";
+            $removeClassQueryExecute = mysqli_query($con,$removeClassQuery);
+            header("Refresh:0; administration.php");
+        }
+
+    }
+
+    if(isset($_POST['btnUpdateAssignedClass'])){
+        $accountID = htmlspecialchars($_POST['accountModifyClassID'],ENT_COMPAT);
+        $oldClassID = htmlspecialchars($_POST['oldClassID'],ENT_COMPAT);
+        $newClassID = htmlspecialchars($_POST['lessonSelect'],ENT_COMPAT);
+        $modifyType = htmlspecialchars($_POST['accountModifyType'],ENT_COMPAT);
+
+        if($modifyType == "Student"){
+            $update = $dbh->prepare("update studentdetails_classdetails set class_id = ? where student_id = $accountID && class_id = $oldClassID");
+            $update->bindParam(1,$newClassID);
+            $update->execute();   
+        }
+        elseif($modifyType == "Teacher"){
+            $update = $dbh->prepare("update teacherdetails_classdetails set class_id = ? where teacher_id = $accountID && class_id = $oldClassID");
+            $update->bindParam(1,$newClassID);
+            $update->execute(); 
+        }
+
+    }
+
     header("Refresh:0; administration.php");
     
     

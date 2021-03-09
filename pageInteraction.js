@@ -89,6 +89,21 @@ function closeUpdateClass(){
     minimise('updateClass');
 }
 
+function closeAddClass(){
+    topFunction();
+    minimise('addAcount');
+}
+
+function openSearch(){
+    topFunction();
+    maximise('seachAccount');
+}
+
+function closeSearch(){
+    topFunction();
+    minimise('seachAccount');
+}
+
 function addAccount(){
     maximise('addAcount');
     minimise('classViewer');
@@ -330,13 +345,12 @@ function updateAccountSend(selectID,selectUpdateType,selectFname,selectLname,sel
     document.getElementsByName("Username")[0].value = sendUsername;
     document.getElementsByName("Password")[0].value = sendPassword;
     document.getElementsByName("accountType")[0].value = sendType;
-    deleteOutputFName.innerHTML = sendFname;
 }
 
 function addAccountSend(selectID, selectAddType){
     topFunction();
     maximise('accountAddClass');
-
+    minimise('removeclass');
     minimise('accountDelete');
     minimise('accountUpdate');
     var sendAccountID = document.getElementById(selectID).textContent;
@@ -344,4 +358,43 @@ function addAccountSend(selectID, selectAddType){
 
     document.getElementsByName("accountAddClassID")[0].value = sendAccountID;
     document.getElementsByName("accountAddType")[0].value = sendAccountType;
+}
+
+function removeAccountClassSend(selectID,selectClassID,selectRemoveType,Title){
+    topFunction();
+    maximise('removeclass');
+    minimise('accountAddClass');
+    minimise('accountDelete');
+    minimise('accountUpdate');
+
+    var classTitleOutput = document.getElementById("classRemoveTitle");
+    var sendAccountID = document.getElementById(selectID).textContent;
+    var sendClassID = document.getElementById(selectClassID).value;
+    var sendAccountType = document.getElementById(selectRemoveType).textContent;
+    var sendAccountClassTitle = document.getElementById(Title).textContent;
+    document.getElementsByName("accountRemoveClassID")[0].value = sendAccountID;
+    document.getElementsByName("removeClassID")[0].value = sendClassID;
+    document.getElementsByName("removeClassIDAccountType")[0].value = sendAccountType;
+    classTitleOutput.innerHTML = sendAccountClassTitle;
+}
+
+function updateClassAssign(selectID,selectClassID,selectUpdateClassType,Title){
+    topFunction();
+    maximise('updateAssignedClass');
+    minimise('removeclass');
+    minimise('accountAddClass');
+    minimise('accountDelete');
+    minimise('accountUpdate');
+
+    var classTitleOutput = document.getElementById("displayOldClassTitle");
+
+    var sendAccountID = document.getElementById(selectID).textContent;
+    var sendClassID = document.getElementById(selectClassID).value;
+    var sendAccountType = document.getElementById(selectUpdateClassType).textContent;
+    var sendAccountClassTitle = document.getElementById(Title).textContent;
+
+    document.getElementsByName("accountModifyClassID")[0].value = sendAccountID;
+    document.getElementsByName("oldClassID")[0].value = sendClassID;
+    document.getElementsByName("accountModifyType")[0].value = sendAccountType;
+    classTitleOutput.innerHTML = sendAccountClassTitle;
 }

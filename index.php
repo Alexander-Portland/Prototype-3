@@ -36,11 +36,11 @@
                     <h2 class ="loginTitle">Welcome Back!</h2>
                     <label class = "loginLabel">Username</label><br>
                     <img src="img\user.png" id="" alt="Missing user picture" class = "helpButton" width = 40px>
-                    <input type="text" name="user" class = "inputButton" required >
+                    <input type="text" name="user" class = "inputButton" maxlength="30" required >
                     <br>
                     <label class = "loginLabel">Password</label><br>
                     <img src="img\lock.png" id="" alt="Missing lock picture" class = "helpButton" width = 40px>
-                    <input type="password" name="password" class = "inputButton" required>
+                    <input type="password" name="password" class = "inputButton" maxlength="30" required>
                 </section>
                 <img src="img\helpButton.png" id="helpBtn" alt="Missing help button" class = "helpButton" width = 40x>
                 <section class = "loginCenter">

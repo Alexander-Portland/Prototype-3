@@ -163,7 +163,7 @@ body{
 }
 
 /* Login page display settings so that the login page works with mobile devices*/
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 850px) {
   .loginBoxSettings{
     color: aliceblue;
     filter: none;

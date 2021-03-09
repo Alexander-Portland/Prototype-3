@@ -75,7 +75,7 @@ if($numStudent == 0){
                 <button onclick="viewClasses()" class= "button">View Classes</button>
                 <button onclick="addClass()" class= "button">Add Classes</button>
                 <button onclick="addAccount()" class= "button">Add Account</button>
-                <button onclick="()" class= "button">Search</button>
+                <button onclick="openSearch()" class= "button">Search</button>
             </section>
     </section>
 
@@ -138,12 +138,12 @@ if($numStudent == 0){
                         </select>
                         <b><p>Are you sure you want to update this?</p></b>
                         <button name="accountAdd" class = "button buttonGreen">Yes</button>
-                        <button onclick="closeUpdateClass()" class = "button buttonRed">No</button>
                     </form>
+                    <button onclick="closeAddClass()" class = "button buttonRed">No</button>
             </section>
         </section>
 
-        <section id = "seachAccount" class = "centerPosClass ">
+        <section id = "seachAccount" class = "centerPosClass hidePost">
             <section class = "classPosts">
                 <form action="viewAccounts.php" method="post">
                     <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Student</p>
@@ -154,10 +154,10 @@ if($numStudent == 0){
                             <option value="Teacher">Teacher</option>
                             <option value="Admin">Admin</option>
                         </select>
-                    <p><b>Are you sure you wish to search for this student?</b></p>
+                    <p><b>Are you sure you wish to search for this account?</b></p>
                     <button name="searchAccountBtn" class = "button buttonGreen">Yes</button> 
-                    <button onclick="abort();" class = "button buttonRed">No</button>
                 </form>
+                <button onclick="" class = "button buttonRed">No</button>
             </section>
         </section>
 
