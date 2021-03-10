@@ -34,7 +34,6 @@
         $teacherQuery = "select teacher_id from teacherdetails where teacher_id = '$sendName'";
         $resultTeacher = mysqli_query($con,$teacherQuery);
         $numResultTeacher = mysqli_num_rows($resultTeacher);
-        echo "<script type='text/javascript'>alert($numResultTeacher);</script>";
         if($numResultTeacher == 0){
             echo "<script type='text/javascript'>alert('The teacher you selected does not exist');</script>";
         }
@@ -62,7 +61,6 @@
             header('location:MessengerStudent.php');
         }
         else{
-            echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
             header('location:MessengerStudent.php');
         }
     }

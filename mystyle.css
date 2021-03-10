@@ -52,6 +52,15 @@ body{
   margin: auto;
 }
 
+.loginRejectStyle{
+  margin-top: 20%;
+  border: 3px solid rgba(224, 82, 82, 0.911);
+  border-radius: 10px;
+  color: black;
+  background-color: rgba(224, 82, 82, 0.911);
+  filter: drop-shadow(0 0 30px #333);
+}
+
 /* Help button positioning */
 .helpButton{
   padding-left: 3vh;
