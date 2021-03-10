@@ -19,8 +19,6 @@ if($name == ""){
 //Form Start
 $studentPick = "select forname, surname from studentdetails where student_username = '$name' && student_password = '$pass'";
 $teacherPick = "select * from teacherdetails where teacher_username = '$name' && teacher_password = '$pass'";
-
-
 $adminPick = "select admin_ID, forename, surname from admin where admin_username = '$name' && admin_password = '$pass' ";
 
 $resultStudent = mysqli_query($con,$studentPick);
@@ -66,11 +64,11 @@ elseif($numAdmin == 1){
     <main>
         <section class = "centerPosClass">
             <section class = "helpContent">
-            <form action="index.php">
+            <form action="MessengerStudent.php">
                     <button class= "expandButton button">Retry</button>
                 </form>
                 <label class = "loginLabel">Login rejected</label>
-                <p>The username and password did not match any existing accounts</p>
+                    <p>The login details you entered were incorrect</p>
             </section>
         </section>
     </main>

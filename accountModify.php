@@ -143,7 +143,7 @@
 
     }
 
-    header("Refresh:0; viewAccounts.php");
+    header("Refresh:0; administration.php");
     
     
 ?>

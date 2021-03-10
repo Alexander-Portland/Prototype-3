@@ -35,7 +35,7 @@
         $resultTeacher = mysqli_query($con,$teacherQuery);
         $numResultTeacher = mysqli_num_rows($resultTeacher);
         if($numResultTeacher == 0){
-            echo "<script type='text/javascript'>alert('The teacher you selected does not exist');</script>";
+            $errorStatement = "The teacher you selected does not exist on the system";
         }
         else{
             $teacherSelect = $resultTeacher->fetch_assoc();
@@ -64,5 +64,27 @@
             header('location:MessengerStudent.php');
         }
     }
-    header('location:MessengerStudent.php')
+    
 ?>
+
+<html>
+header('location:MessengerStudent.php')
+    <head> 
+        <title>login</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="mystyle.css">
+        <script src="pageInteraction.js"></script>
+    </head>
+    <main>
+        <section class = "centerPosClass">
+            <section class = "helpContent">
+                <form action="MessengerStudent.php">
+                        <button class= "expandButton button">Return</button>
+                </form>
+                <label class = "loginLabel">Login rejected</label>
+                <p><?php echo $errorStatement ?></p>
+            </section>
+        </section>
+    </main>
+</html>
