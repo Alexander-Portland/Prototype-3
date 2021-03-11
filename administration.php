@@ -87,8 +87,8 @@ if($numStudent == 0){
             <section class = "classPosts">
                     <form action="administrationSubmission.php" method="post">
                         <p class = "teacherInteractionBoxTitle">Add New Class</p> 
-                        <label><b>Class Title: </b></label><input type="text" name="classNameInput" class = "inputButton" required><br>
-                        <label><b>Class Description:  </b></label><textarea type="text" name="classDescriptionInput" class = "textInput" required></textarea><br>
+                        <p><b>Class Title: </b></p><input type="text" name="classNameInput" class = "inputButton" required><br>
+                        <p><b>Class Description:  </b></p><textarea type="text" name="classDescriptionInput" class = "textInput" required></textarea><br>
                         <p><b>Are you sure you want to send this question?</b></p>
                         <button name="sendNewClass" class = "button buttonGreen">Yes</button>
                         <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>  
@@ -101,8 +101,9 @@ if($numStudent == 0){
                     <p class = "teacherInteractionBoxTitle">Delete Class</p> 
                     <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classDeleteID" class = "hidepost"><br>
-                        <label class = "displayInline"><b>Class Name: </b></label><p id = "deleteClassName" class = "displayInline"></p><br> 
-                        <label class = "displayInline"><b>Class Description: </b></label><p id = "deleteClassDescription" class = "displayInline"></p><br>
+                        <input type="text" name ="classDeleteTitle" class = "hidepost"><br>
+                        <p class = "displayInline"><b>Class Name: </b></p><p id = "deleteClassName" class = "displayInline"></p><br> 
+                        <p class = "displayInline"><b>Class Description: </b></p><p id = "deleteClassDescription" class = "displayInline"></p><br>
                         <b><p>Are you sure you want to delete this?</p></b>
                         <button name="btnDelete" class = "button buttonGreen">Yes</button>
                         <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>
@@ -115,8 +116,8 @@ if($numStudent == 0){
                 <p class = "teacherInteractionBoxTitle">Update Class</p>
                     <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classUpdateID" class = "hidePost"><br>
-                        <label>Class Name: </label><input type="text" name="classUpdate" class = "inputButton" required><br>
-                        <label>Class Description: </label><textarea type="text" name="classDescriptionUpdate" class = "textInput" required></textarea><br>
+                        <p>Class Name: </p><input type="text" name="classUpdate" class = "inputButton" required><br>
+                        <p>Class Description: </p><textarea type="text" name="classDescriptionUpdate" class = "textInput" required></textarea><br>
                         <b><p>Are you sure you want to update this?</p></b>
                         <button name="search" class = "button buttonGreen">Yes</button>
                         <button onclick="closeOnNo()" class = "button buttonRed" type = "button">No</button>
@@ -129,11 +130,11 @@ if($numStudent == 0){
                 <p class = "teacherInteractionBoxTitle">Add Account</p>
                     <form action="administrationSubmission.php" method="post">
                         <input type="text" name ="classUpdateID" class = "hidePost"><br>
-                        <label><b>First Name: </b></label><input type="text" name="accountFirstName" class = "inputButton" required><br>
-                        <label><b>Last Name: </b></label><input type="text" name="accountLastName" class = "inputButton" required><br>
-                        <label><b>User Name: </b></label><input type="text" name="accountUserName" class = "inputButton" required><br>
-                        <label><b>Password: </b></label><input type="text" name="accountPassword" class = "inputButton" required><br>
-                        <label class = "displayInline"><b>Account type: </b></label><select name = "accountTypeSelect">
+                        <p><b>First Name: </b></p><input type="text" name="accountFirstName" class = "inputButton" required><br>
+                        <p><b>Last Name: </b></p><input type="text" name="accountLastName" class = "inputButton" required><br>
+                        <p><b>User Name: </b></p><input type="text" name="accountUserName" class = "inputButton" required><br>
+                        <p><b>Password: </b></p><input type="text" name="accountPassword" class = "inputButton" required><br>
+                        <p class = "displayInline"><b>Account type: </b></label><select name = "accountTypeSelect">
                             <option value="Student">Student</option>
                             <option value="Teacher">Teacher</option>
                             <option value="Admin">Admin</option>
@@ -149,9 +150,9 @@ if($numStudent == 0){
             <section class = "classPosts">
                 <form action="viewAccounts.php" method="post">
                     <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Student</p>
-                    <label><b>First Name</b></label><input type="text" name="fNameSearch" class = "inputButton" required>
-                    <label><b>Last Name</b></label><input type="text" name="lNameSearch" class = "inputButton" required>
-                    <label class = "displayInline"><b>Account type: </b></label><select name = "searchAccountType">
+                    <p><b>First Name</b></p><input type="text" name="fNameSearch" class = "inputButton" required>
+                    <p><b>Last Name</b></p><input type="text" name="lNameSearch" class = "inputButton" required>
+                    <p class = "displayInline"><b>Account type: </b></label><select name = "searchAccountType">
                             <option value="Student">Student</option>
                             <option value="Teacher">Teacher</option>
                             <option value="Admin">Admin</option>

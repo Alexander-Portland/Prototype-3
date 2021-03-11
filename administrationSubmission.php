@@ -36,22 +36,22 @@ if(isset($_POST['sendNewClass'])){
     $numclass = mysqli_num_rows($resultclass);
 
     if($numclass >= 1){
-        echo "<script type='text/javascript'>alert('Adding class aborted, you cannot add a class with the same title as a another class');</script>";
-        header("Refresh:0; administration.php");
+        $errorTitle = "Adding class rejected";
+        $errorMessage = "There is already a class with this name on the system";
     }
     else{
         $stmt = $dbh->prepare("insert into classdetails values('',?,?)");
         $stmt->bindParam(1,$classTitle);
         $stmt->bindParam(2,$classDescription);
         $stmt->execute();
-
         header("Refresh:0; administration.php");
     }
     }
 
 if(isset($_POST['btnDelete'])){
     $deleteID = $_POST['classDeleteID'];
-    $deleteFind = "select class_id from classdetails where class_id = '$deleteID'";
+    $deleteTitle = $_POST['classDeleteTitle'];
+    $deleteFind = "select class_id from classdetails where class_id = '$deleteID' && class_title = '$deleteTitle'";
     $resultClassFind = mysqli_query($con,$deleteFind);
     $numDeleteResult = mysqli_num_rows($resultClassFind);
     if($numDeleteResult == 1){
@@ -60,8 +60,9 @@ if(isset($_POST['btnDelete'])){
         header("Refresh:0; administration.php");
     }
     else{
-        echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
-        header("Refresh:0; administration.php");
+        $errorTitle = "Delete class rejected";
+        $errorMessage = "The class you are attempting to delete a different class from the one you selected";
+        
     }
 }
 
@@ -83,8 +84,8 @@ if(isset($_POST['search'])){
         header("Refresh:0; administration.php");
     }
     else{
-        echo "<script type='text/javascript'>alert('Update failed to process');</script>";
-        header("Refresh:0; administration.php");
+        $errorTitle = "Updating class rejected";
+        $errorMessage = "The class you are atempting to update does not exist on the system";
     }
 }
 
@@ -99,7 +100,8 @@ if(isset($_POST['accountAdd'])){
         $accountQueryResult = mysqli_query($con,$accountQuery);
         $numAccountQueryResult = mysqli_num_rows($accountQueryResult);
         if($numAccountQueryResult >= 1){
-            echo "<script type='text/javascript'>alert('There is already an existing student account with that username');</script>";
+            $errorTitle = "Adding student account rejected";
+            $errorMessage = "There is already an existing student account with that username";
         }
         else{
             $stmt = $dbh->prepare("insert into studentdetails values('',?,?,?,?)");
@@ -115,7 +117,8 @@ if(isset($_POST['accountAdd'])){
         $accountQueryResult = mysqli_query($con,$accountQuery);
         $numAccountQueryResult = mysqli_num_rows($accountQueryResult);
         if($numAccountQueryResult >= 1){
-            echo "<script type='text/javascript'>alert('There is already an existing teacher account with that username');</script>";
+            $errorTitle = "Adding teacher account rejected";
+            $errorMessage = "There is already an existing teacher account with that username";
         }
         else{
             $stmt = $dbh->prepare("insert into teacherdetails values('',?,?,?,?)");
@@ -126,12 +129,13 @@ if(isset($_POST['accountAdd'])){
             $stmt->execute();
         }
     }
-    else{
+    elseif($accountType == "Admin"){
         $accountQuery = "select * from admin where admin_username = '$accountUserName'";
         $accountQueryResult = mysqli_query($con,$accountQuery);
         $numAccountQueryResult = mysqli_num_rows($accountQueryResult);
         if($numAccountQueryResult >= 1){
-            echo "<script type='text/javascript'>alert('There is already an existing admin account with that username');</script>";
+            $errorTitle = "Adding admin account rejected";
+            $errorMessage = "There is already an existing admin account with that username";
         }
         else{
             $stmt = $dbh->prepare("insert into admin values('',?,?,?,?)");
@@ -142,7 +146,34 @@ if(isset($_POST['accountAdd'])){
             $stmt->execute();
         }
     }
-    header("Refresh:0; administration.php");
+    else{
+        $errorTitle = "Error: selected unknown account type";
+        $errorMessage = "It appears you have attempted to add an account type that does not exist";
+    }
 }
-    header("Refresh:0; administration.php");
 ?>
+
+<html>
+    <head>
+        <title>Administration submission</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="mystyle.css">
+        <style>
+            <?php include 'mystyle.css'; ?>
+        </style>
+        <script src="pageInteraction.js"></script>
+        </head>
+    </head>
+    <main>
+        <section class = "centerPosClass">
+            <section class = "helpContent">
+            <form action="administration.php">
+                    <button class= "expandButton button">Return</button>
+                </form>
+                <label class = "loginLabel"><?php echo $errorTitle ?> </label>
+                    <p><?php echo $errorMessage ?> </p>
+            </section>
+        </section>
+    </main>
+</html>

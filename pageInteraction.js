@@ -253,6 +253,7 @@ function classDeleteSend(deleteClassID,deleteClassTitle,deleteClassDescription){
     var sendDeleteTitle = document.getElementById(deleteClassTitle).textContent;
     var sendDeleteDescription = document.getElementById(deleteClassDescription).textContent;
     document.getElementsByName("classDeleteID")[0].value = sendDeleteID;
+    document.getElementsByName("classDeleteTitle")[0].value = sendDeleteTitle;
     deleteName.innerHTML = sendDeleteTitle;
     deleteDescription.innerHTML = sendDeleteDescription;
 }
