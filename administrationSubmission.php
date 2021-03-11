@@ -61,7 +61,7 @@ if(isset($_POST['btnDelete'])){
     }
     else{
         $errorTitle = "Delete class rejected";
-        $errorMessage = "The class you are attempting to delete a different class from the one you selected";
+        $errorMessage = "The class you are attempting to delete a different class from the one you selected or a class that does not exist";
         
     }
 }

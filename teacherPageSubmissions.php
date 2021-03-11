@@ -28,7 +28,6 @@
         $classPick = "select class_id from classdetails where class_id = '$classId'";
         $resultClass = mysqli_query($con,$classPick);
         $numAddResult = mysqli_num_rows($resultClass);
-        echo "<script type='text/javascript'>alert('$numAddResult');</script>";
         if($numAddResult == 1){
             $name = $_FILES['myfile']['name'];
             $type = $_FILES['myfile']['type'];
@@ -47,12 +46,12 @@
             header('location:teacherPage.php');
         }
         else{
-            echo "<script type='text/javascript'>alert('upload failed to process');</script>";
+            $errorTitle = "Upload rejected";
+            $errorStatement = "You are attempting to upload a post to a class that does not exist";
         }
         }
 
     if(isset($_POST['btnDelete'])){
-        echo "<script type='text/javascript'>alert('This is the deletion test');</script>";
         $postID = $_POST['classDeleteID'];
         $classFind = "select post_id from class_posts where post_id = '$postID'";
         $resultClassFind = mysqli_query($con,$classFind);
@@ -62,9 +61,10 @@
             $postDeleteQuery = mysqli_query($con,$postDelete);
         }
         else{
-            echo "<script type='text/javascript'>alert('Deletion failed to process');</script>";
+            $errorTitle = "Delete rejected";
+            $errorStatement = "You are attempting to delete a post that does not exist";
         }
-        header('location:teacherPage.php');
+        
         }
         if(isset($_POST['search'])){
             $postID = $_POST['classUpdateID'];
@@ -96,7 +96,36 @@
             }
             else{
                 echo "<script type='text/javascript'>alert('Update failed to process');</script>";
+                $errorTitle = "Update rejected";
+                $errorStatement = "You are attempting to update a post that does not exist";
+        
             }
         }
-        header('location:teacherPage.php');
+       
 ?>
+
+<html>
+    <head>
+        <title>Teacher Submission</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="mystyle.css">
+        <style>
+            <?php include 'mystyle.css'; ?>
+        </style>
+        <script src="pageInteraction.js"></script>
+        </head>
+    </head>
+    <main>
+        <section class = "centerPosClass">
+            <section class = "helpContent">
+
+            <form action="teacherPage.php">
+                    <button class= "expandButton button">Retry</button>
+                </form>
+                <label class = "loginLabel"><?php echo $errorTitle ?></label>
+                    <p><?php echo $errorStatement ?></p>
+            </section>
+        </section>
+    </main>
+</html>

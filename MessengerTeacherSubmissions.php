@@ -30,7 +30,7 @@
         $replyMessageID = $_POST['classID'];
         $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
 
-        $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID'";
+        $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID' && Teacher_ID = '$ID";
         $resultMessageFind = mysqli_query($con, $messageFind);
         $numMessageResult = mysqli_num_rows($resultMessageFind);
 
@@ -45,9 +45,30 @@
         }
 
         else{
-            echo "<script type='text/javascript'>alert('The message you are replying to does not exist');</script>";
-            header('location:MessengerTeacher.php');
+            $errorTitle = "Message answer rejected";
+            $errorStatement = "You are attempting to answer a message that does not belong to you";
         }
 
     }
 ?>
+
+<html>
+    <head> 
+        <title>Answer submission</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="mystyle.css">
+        <script src="pageInteraction.js"></script>
+    </head>
+    <main>
+        <section class = "centerPosClass">
+            <section class = "helpContent">
+                <form action="MessengerStudent.php">
+                        <button class= "expandButton button">Return</button>
+                </form>
+                <label class = "loginLabel"><?php echo $errorTitle ?></label>
+                <p><?php echo $errorStatement ?></p>
+            </section>
+        </section>
+    </main>
+</html>

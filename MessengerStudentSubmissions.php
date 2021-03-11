@@ -52,7 +52,7 @@
 
     if(isset($_POST['btnDelete'])){
         $messageID = $_POST['messageDeleteID'];
-        $messageFind = "select Message_ID from messages where Message_ID = '$messageID'";
+        $messageFind = "select Message_ID from messages where Message_ID = '$messageID' && Student_ID = '$ID'";
         $resultClassFind = mysqli_query($con,$messageFind);
         $numDeleteResult = mysqli_num_rows($resultClassFind);
         if($numDeleteResult == 1){
@@ -61,16 +61,16 @@
             header('location:MessengerStudent.php');
         }
         else{
-            header('location:MessengerStudent.php');
+            $errorTitle = "Message delete rejected";
+            $errorStatement = "You are attempting to delete a message that does not belong to you";
         }
     }
     
 ?>
 
 <html>
-header('location:MessengerStudent.php')
     <head> 
-        <title>login</title>
+        <title>Message submission</title>
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="mystyle.css">
@@ -82,7 +82,7 @@ header('location:MessengerStudent.php')
                 <form action="MessengerStudent.php">
                         <button class= "expandButton button">Return</button>
                 </form>
-                <label class = "loginLabel">Login rejected</label>
+                <label class = "loginLabel"><?php echo $errorTitle ?></label>
                 <p><?php echo $errorStatement ?></p>
             </section>
         </section>

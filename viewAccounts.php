@@ -169,10 +169,11 @@
             <section class = "classPosts">
             <p class = "teacherInteractionBoxTitle">Account details of <?php echo $firstNameInput ?> <?php echo $lastNameInput?></p>
             <form action="administration.php" method="post">
-                <br><br><button class = "button expandButton">Return to Admin Page</button>
+                <br><br><button class = "button expandButton">Return to Admin Page</button><br><br>
             </form>
                 <?php
                     if($accountType == "Student" || $accountType == "Teacher" || $accountType == "Admin"){
+                        if($numAccountQueryResult >= 1){
                         while($rowClass = $accountQueryResult->fetch_assoc()): ?> 
                             <?php
                                 if($classSearchName == "students"){
@@ -208,85 +209,80 @@
                                 $accountUsername = rand();
                                 $accountPassword = rand();
                                 $accountTypePick = rand();
-                                if(is_null($studentQueryExecute) == NULL){
-                                    echo "<script type='text/javascript'>alert('no account');</script>";
-                                }
-                                else{
-                                    echo "<script type='text/javascript'>alert($queryCount);</script>";
-                                    echo'<br><section>';
-                                        echo '<p id = "'.$accountIDPick.'" class = "hidePost">'.$selectedID.'</p>';
-                                        echo'<label class = "displayInline">First name: </label><p id = "'.$accountFName.'" class = "displayInline">'.$firstNameInput.'</p><br>';
-                                        echo'<label class = "displayInline">Last name: </label><p id = "'.$accountLName.'" class = "displayInline">'.$lastNameInput.'</p><br>';
-                                        echo'<label class = "displayInline">Username: </label><p id = "'.$accountUsername.'" class = "displayInline">'.$selectedUsername.'</p><br>';
-                                        echo'<label class = "displayInline">Password: </label><p id = "'.$accountPassword.'" class = "displayInline">'.$selectedPassword.'</p><br>';
-                                        echo'<label class = "displayInline">Account Type: </label><p id = "'.$accountTypePick.'"  class = "displayInline">'.$accountType.'</p><br>';
-                                        echo '<button onclick = "deleteAccountSend('.$accountIDPick.','.$accountTypePick.','.$accountFName.','.$accountLName.','.$accountUsername.','.$accountPassword.')" class="button">Delete Account</button>';
-                                        echo '<button onclick ="updateAccountSend('.$accountIDPick.','.$accountTypePick.','.$accountFName.','.$accountLName.','.$accountUsername.','.$accountPassword.')" class="button">Update Account</button>';
-                                        echo '<button onclick ="addAccountSend('.$accountIDPick.','.$accountTypePick.')" class="button">Add Classes to account</button>';
-                                    echo'</section>';
-
-                                
-
-                                    echo'<br><section class = "">';
-                                        echo'<p class = "teacherInteractionBoxTitle">Assigned classes</p>';
-                                        if($classSearchName == "students"){
-                                            $classSelect = "select class_id from studentdetails_classdetails where student_id = $selectedID";
-                                            $classQuery = mysqli_query($con,$classSelect);
-                                            $numClassQueryResult = mysqli_num_rows($classQuery);
-                                        }
-                                        elseif($classSearchName == "teachers"){
-                                            $classSelect = "select class_id from teacherdetails_classdetails where teacher_id = $selectedID";
-                                            $classQuery = mysqli_query($con,$classSelect);
-                                            $numClassQueryResult = mysqli_num_rows($classQuery);
-                                        }
-                                        elseif($classSearchName == "admin"){
-                                            $numClassQueryResult = 0;
-                                        }
-                                        if($numClassQueryResult >= 1){
-                                            while($classRow = $classQuery->fetch_assoc()): ?> 
-                                                <?php
-                                                    $classID = $classRow['class_id'];
-                                                    $selectClassID = rand();
-                                                    $classTitleID = rand();
-                                                    $classExtract = "select * from classdetails where class_id = $classID";
-                                                    $classExtractExecution = mysqli_query($con,$classExtract);
-                                                    $numClassExtractExecution = mysqli_num_rows($classExtractExecution);
-                                                    $classExtractRow = $classExtractExecution->fetch_assoc();
-                                                    $className = $classExtractRow['class_title'];
-                                                    if($numClassExtractExecution >= 1){
-                                                        echo '<br><section class = "classOutliner">';
-                                                            echo '<input type="text" id = "'.$selectClassID.'" value = "'.$classID.'" class = "hidePost"><br>';
-                                                            echo '<label class = "displayInline"><b>Class Name: </b></label><p id = "'.$classTitleID.'" class = "displayInline">'.$className.'</p><br>';
-                                                            echo '<button onclick ="removeAccountClassSend('.$accountIDPick.','.$selectClassID.','.$accountTypePick.','.$classTitleID.')" class="button">Remove</button>';
-                                                            echo '<button onclick ="updateClassAssign('.$accountIDPick.','.$selectClassID.','.$accountTypePick.','.$classTitleID.')" class="button">Update</button>';
-        
-                                                        echo'</section>';
-                                                    }
-                                                    else{
-                                                        echo '<section class = "classOutliner">';
-                                                            echo '<p>This account has not been assigned any classes</p>';
-                                                        echo'</section>';
-                                                    }
-                                                ?>
-                                            <?php endwhile;
-                                        }
-                                        else{
-                                            echo '<section class = "classOutliner">';
-                                                echo '<p>This account has not been assigned any classes</p>';
-                                            echo'</section>';
-                                        }
-                                }
+                            
+                                echo'<br><section>';
+                                    echo '<p id = "'.$accountIDPick.'" class = "hidePost">'.$selectedID.'</p>';
+                                    echo'<p class = "displayInline"><b>First name: </b></p> <p id = "'.$accountFName.'" class = "displayInline">'.$firstNameInput.'</p><br>';
+                                    echo'<p class = "displayInline"><b>Last name: </b></p> <p id = "'.$accountLName.'" class = "displayInline">'.$lastNameInput.'</p><br>';
+                                    echo'<p class = "displayInline"><b>Username: </b></p> <p id = "'.$accountUsername.'" class = "displayInline">'.$selectedUsername.'</p><br>';
+                                    echo'<p class = "displayInline"><b>Password: </b></p> <p id = "'.$accountPassword.'" class = "displayInline">'.$selectedPassword.'</p><br>';
+                                    echo'<p class = "displayInline"><b>Account Type: </b></p> <p id = "'.$accountTypePick.'"  class = "displayInline">'.$accountType.'</p><br>';
+                                    echo '<button onclick = "deleteAccountSend('.$accountIDPick.','.$accountTypePick.','.$accountFName.','.$accountLName.','.$accountUsername.','.$accountPassword.')" class="button">Delete Account</button>';
+                                    echo '<button onclick ="updateAccountSend('.$accountIDPick.','.$accountTypePick.','.$accountFName.','.$accountLName.','.$accountUsername.','.$accountPassword.')" class="button">Update Account</button>';
+                                    echo '<button onclick ="addAccountSend('.$accountIDPick.','.$accountTypePick.')" class="button">Add Classes to account</button>';
                                 echo'</section>';
+
+                                echo'<br><section class = "">';
+                                    echo'<p class = "teacherInteractionBoxTitle">Assigned classes</p>';
+                                    if($classSearchName == "students"){
+                                        $classSelect = "select class_id from studentdetails_classdetails where student_id = $selectedID";
+                                        $classQuery = mysqli_query($con,$classSelect);
+                                        $numClassQueryResult = mysqli_num_rows($classQuery);
+                                    }
+                                    elseif($classSearchName == "teachers"){
+                                        $classSelect = "select class_id from teacherdetails_classdetails where teacher_id = $selectedID";
+                                        $classQuery = mysqli_query($con,$classSelect);
+                                        $numClassQueryResult = mysqli_num_rows($classQuery);
+                                    }
+                                    elseif($classSearchName == "admin"){
+                                        $numClassQueryResult = 0;
+                                    }
+                                    if($numClassQueryResult >= 1){
+                                        while($classRow = $classQuery->fetch_assoc()): ?> 
+                                            <?php
+                                                $classID = $classRow['class_id'];
+                                                $selectClassID = rand();
+                                                $classTitleID = rand();
+                                                $classExtract = "select * from classdetails where class_id = $classID";
+                                                $classExtractExecution = mysqli_query($con,$classExtract);
+                                                $numClassExtractExecution = mysqli_num_rows($classExtractExecution);
+                                                $classExtractRow = $classExtractExecution->fetch_assoc();
+                                                $className = $classExtractRow['class_title'];
+                                                if($numClassExtractExecution >= 1){
+                                                    echo '<br><section class = "classOutliner">';
+                                                        echo '<input type="text" id = "'.$selectClassID.'" value = "'.$classID.'" class = "hidePost"><br>';
+                                                        echo '<label class = "displayInline"><b>Class Name: </b></label><p id = "'.$classTitleID.'" class = "displayInline">'.$className.'</p><br>';
+                                                        echo '<button onclick ="removeAccountClassSend('.$accountIDPick.','.$selectClassID.','.$accountTypePick.','.$classTitleID.')" class="button">Remove</button>';
+                                                        echo '<button onclick ="updateClassAssign('.$accountIDPick.','.$selectClassID.','.$accountTypePick.','.$classTitleID.')" class="button">Update</button>';
+    
+                                                    echo'</section>';
+                                                }
+                                                else{
+                                                    echo '<section class = "classOutliner">';
+                                                        echo '<p>This account has not been assigned any classes</p>';
+                                                    echo'</section>';
+                                                }
+                                            ?>
+                                        <?php endwhile;
+                                    }
+                            echo'</section>';
+                                
                             ?>
                         <?php endwhile;
+                        }
+                        else{
+                            echo'<section>';
+                                echo'<p>The account you searched for does not exist</p>';
+                            echo'</section>';
+                        }
                     }
                     else{
-                        echo '<p>The account type you selected does not exist</p>';
+                        echo '<section>';
+                            echo '<p>The account type you selected does not exist</p>';
+                        echo'</section>';
                     }
-            ?>
-                
-            <?php
                     ?>
+                   
             </section>
         </section>
     </main>
