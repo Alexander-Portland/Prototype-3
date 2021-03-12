@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head> 
+<head>
+    <!--Login page only refers to a single css page and single javascript page -->
     <title>login</title>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,11 +11,14 @@
 </head>
 
 <main>
+    <!--The help page is designed to contain a listed tutorial and video tutorial -->
     <section id="myhelp" class="help">
         <section class="helpContent">
+            <!--Help page is closed with user interacts with the close button -->
             <span class="close">&times;</span>
             <label class = "loginLabel"><b>Using the login page</b></label>
             <p class = "loginHelpText">To log in, take the following steps</p>
+            <!--Worded part of the tutorial -->
             <ol>
             
                 <li>Type you're username in the text box below "Username"</li>
@@ -22,6 +26,7 @@
                 <li>Press the login button</li>
 
             </ol>
+            <!--Video part of the tutorial -->
             <video class = "helpVideo" controls>
                 <source src="vid/loginHelp.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -29,6 +34,7 @@
         </section>
     </section>
 
+    <!--Login box is kept centered and contains four inputs: username, password, login button and help button -->
     <section class="loginBoxPos">
         <section id = "loginBox" class="loginBoxSettings">
             <form action="Validation.php" method="post">
@@ -49,6 +55,9 @@
 
             </form>
     </section>
+
+    <!--The help page is kept invisible until user preses help button, it can then only be closed
+    when user interacts with the close button-->
     <script>
         var selectHelp = document.getElementById("myhelp");
         var btn = document.getElementById("helpBtn");

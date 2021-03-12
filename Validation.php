@@ -2,21 +2,23 @@
 
 session_start();
 
-
+//For test purposes the database login was set to factory default
 $con = mysqli_connect('localhost','root','');
 
 mysqli_select_db($con,'demo');
 
+//the username and password of the login is pulled from the index page
 $name = $_POST['user'];
 $pass = $_POST['password'];
 
+//attempts to gain access via the url without a session login will result in the user being rediected to login page
 if($name == ""){
     $_SESSION['username'] = "";
     $_SESSION['password'] = "";
     header('location:index.php');
 }
 
-//Form Start
+//Form Start: login details are then checked against all account databases
 $studentPick = "select forname, surname from studentdetails where student_username = '$name' && student_password = '$pass'";
 $teacherPick = "select * from teacherdetails where teacher_username = '$name' && teacher_password = '$pass'";
 $adminPick = "select admin_ID, forename, surname from admin where admin_username = '$name' && admin_password = '$pass' ";
@@ -30,7 +32,8 @@ $numTeacher = mysqli_num_rows($resultTeacher);
 $resultadmin = mysqli_query($con,$adminPick);
 $numAdmin = mysqli_num_rows($resultadmin);
 
-//check
+//Check start: login queries are checked to see if any of the databases returned an existing account
+//If accounts check out as true then the user is sent to their account homepage
 if($numStudent == 1){
     $_SESSION['username'] = $name;
     $_SESSION['password'] = $pass;
@@ -49,8 +52,10 @@ elseif($numAdmin == 1){
 }
 ?>
 
+<!--If the login is rejected the user will be displayed this section of code -->
 <html>
     <head>
+        <!--The rejection notice is linked to the same css and javascript page as the index page -->
         <title>Login rejected</title>
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -62,8 +67,10 @@ elseif($numAdmin == 1){
         </head>
     </head>
     <main>
+        <!--The rejection notice contains a title and a description notifying the user of the issue-->
         <section class = "centerPosClass">
             <section class = "helpContent">
+            <!--The rejection page contains a retry button to return the user to the login page -->
             <form action="MessengerStudent.php">
                     <button class= "expandButton button">Retry</button>
                 </form>
