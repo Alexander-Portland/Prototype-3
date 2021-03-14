@@ -156,34 +156,41 @@ if($numStudent == 0){
             </section>
         </section>
     
-        <!---->
+        <!--This section contains the inbox that displays the students unanswered questions-->
         <section id = "inbox" class = "centerPosClass hidePost"> 
             <section class = "classPosts">
                 <p class = "teacherInteractionBoxTitle">Inbox</p>   
                 <?php
+                //The first query for this section grabs the questions that were addressed by the student that have also been answered 
                 $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answer,Question_Answered from messages where Student_ID = '$ID' && Question_Answered = 1";
                 $resultClass = mysqli_query($con,$classPick);
                 $numClass = mysqli_num_rows($resultClass);
+                //The system then checks if the user has any answered questions to view
                 if($numClass >= 1){
+                        //The system then loops through each answered question to display
                         while($rowClass = $resultClass->fetch_assoc()): ?> 
                             <?php
+                                //Randomly generated IDs are needed to identify the displayed question content
                                 $QuestionID = rand();
                                 $QuestionSender = rand();
                                 $QuestionTitle = rand();
                                 $QuestionDescription = rand();
                                 $teacherID = $rowClass["Teacher_ID"];
 
+                                //This query is used to extract the details of the teacher the extracted question was addressed to 
                                 $studentFnamePick = "select teacher_forname, teacher_surname from teacherdetails where teacher_id = '$teacherID'";
                                 $studentQuery = mysqli_query($con,$studentFnamePick);
-
                                 $NamesClass = $studentQuery->fetch_assoc();
 
+                                //All of the details of the answered question are then extracted
                                 $FnameRow = $NamesClass["teacher_forname"];
                                 $LnameRow = $NamesClass["teacher_surname"];
                                 $messageID = $rowClass["Message_ID"];
                                 $messageTitle = $rowClass["Question_Title"];
                                 $messageDescription = $rowClass["Question_Description"];
                                 $QuestionAnswer = $rowClass["Question_Answer"];
+
+                                //Extracted questions details are then displayed in a seperated section
                                 echo '<br><section class = "classOutliner">';
                                 echo'<button class = "button expandButton" onclick = "messageDeleteSend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')">Delete</button>';
                                 echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
@@ -198,6 +205,7 @@ if($numStudent == 0){
                                 
                     <?php endwhile;
                     }
+                    //If there are no answered question for the user then the following notification is displayed in the inbox section
                     else{
                         echo '<p>Inbox is empty, you have either not submitted a question or none of the questions have been answered</p>';
                     }
@@ -205,34 +213,46 @@ if($numStudent == 0){
                 </section>
         </section>
 
-        
+        <!--This section will display all of the unanswered question that the user has sent-->
         <section id = "sent" class = "centerPosClass hidePost">
             <section class = "classPosts">
                 <p class = "teacherInteractionBoxTitle">Sent</p> 
                 <?php
+
+                //The system will search for questions whos student ID matches the user and that has not been answered
                 $classPick = "select Message_ID, Student_ID, Teacher_ID, Question_Title, Question_Description, Question_Answered from messages where Student_ID = '$ID' && Question_Answered = 0";
                 $resultClass = mysqli_query($con,$classPick);
                 $numClass = mysqli_num_rows($resultClass);
+                //The system then checks if there are any unanswered questions sent by the user
                 if($numClass >= 1){
+                    //If there are any unanswered questions sent by the user the system loops through each extracted record
                     while($rowClass = $resultClass->fetch_assoc()): ?> 
                     <?php
+                        //Randomly generated IDs are needed for each of the display questions content
                         $QuestionID = rand();
                         $QuestionSender = rand();
                         $QuestionTitle = rand();
                         $QuestionDescription = rand();
+
+                        //the teacher ID of the question is extracted for the next search
                         $teacherID = $rowClass["Teacher_ID"];
 
+                        //The system locates the details of the teacher the question is addressed to by using the teacher ID extracted from the question record
                         $studentFnamePick = "select teacher_forname, teacher_surname from teacherdetails where teacher_id = '$teacherID'";
                         $studentQuery = mysqli_query($con,$studentFnamePick);
 
                         $NamesClass = $studentQuery->fetch_assoc();
 
+                        //The details of the question and the teacher its addressed to is extracted from both previous search queries
                         $FnameRow = $NamesClass["teacher_forname"];
                         $LnameRow = $NamesClass["teacher_surname"];
                         $messageID = $rowClass["Message_ID"];
                         $messageTitle = $rowClass["Question_Title"];
                         $messageDescription = $rowClass["Question_Description"];
+
+                        //This section displays a signle unanswered question with the previously extracted information of the question displayed
                         echo '<br><section class = "classOutliner">';
+                            //The button bellow allows the user to display the question removal application
                             echo'<button class = "button expandButton" onclick = "messageDeleteSend('.$QuestionID.','.$QuestionSender.','.$QuestionTitle.','.$QuestionDescription.')">Delete</button>';
                             echo '<b><p class = "hidePost">Message ID: </p></b> <p id = '.$QuestionID.' class = "hidePost">'.$messageID.'</p>';
                             echo '<b><p class = "displayInline">To: </p></b> <p id = '.$QuestionSender.' class = "displayInline">'.$FnameRow.' '.$LnameRow.'</p>   ';
@@ -244,6 +264,7 @@ if($numStudent == 0){
                     ?>
                     <?php endwhile;
                 }
+                //If there are no unanswered questions to display then the message below is displayed inside of the sent section
                 else{
                     echo '<p>You have not submitted any questions</p>';
                 }
@@ -251,7 +272,7 @@ if($numStudent == 0){
             </section>
         </section>
 
-        <!-- -->
+        <!--The scripts below are used to hide and display the help box-->
         <script>
                 var selectHelp = document.getElementById("myhelp");
                 var btn = document.getElementById("helpBtn");

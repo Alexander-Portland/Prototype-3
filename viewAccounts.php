@@ -1,39 +1,49 @@
 <?php
     session_start();
 
+    //The username of the session is extracted
     $nameCheck = $_SESSION['passName'];
     
+    //this is the first connection to the database
     $con = mysqli_connect('localhost','root','');
     
     mysqli_select_db($con,'demo');
-                
+
+    //this query checks if there is a admin account with the same session username
     $teacherPick = "select * from admin where admin_username = '$nameCheck' ";
 
     $resultTeacher = mysqli_query($con,$teacherPick);
     $numStudent = mysqli_num_rows($resultTeacher);
 
+    //if there is not an admin account with the same username then the page redirects the user back to the index page
     if($numStudent == 0){
         $_SESSION['username'] = "";
         header('location:index.php');
     }
 
+    //
     if(isset($_POST['searchAccountBtn'])){
-
+        
+        //
         $firstNameInput = htmlspecialchars($_POST['fNameSearch'],ENT_COMPAT);
         $lastNameInput = htmlspecialchars($_POST['lNameSearch'],ENT_COMPAT);
         $accountType = htmlspecialchars($_POST['searchAccountType'],ENT_COMPAT);
+
+        //
         if($accountType == "Student"){
             $accountQuery = "select * from studentdetails where forname = '$firstNameInput' && surname = '$lastNameInput'";
             $accountQueryResult = mysqli_query($con,$accountQuery);
             $numAccountQueryResult = mysqli_num_rows($accountQueryResult);
             $classSearchName = "students";
         }
+        //
         elseif($accountType == "Teacher"){
             $accountQuery = "select * from teacherdetails where teacher_forname = '$firstNameInput' && teacher_surname = '$lastNameInput'";
             $accountQueryResult = mysqli_query($con,$accountQuery);
             $numAccountQueryResult = mysqli_num_rows($accountQueryResult);
             $classSearchName = "teachers";
         }
+        //
         elseif($accountType == "Admin"){
             $accountQuery = "select * from admin where forename = '$firstNameInput' && surname = '$lastNameInput'";
             $accountQueryResult = mysqli_query($con,$accountQuery);
@@ -41,6 +51,7 @@
             $classSearchName = "admin";
         }
     }
+    //
     else{
         $classSearchName = "none";
         header("Refresh:0; administration.php");
@@ -264,6 +275,7 @@
                                                 }
                                             ?>
                                         <?php endwhile;
+                                        echo '<br><br><p class = "teacherInteractionBoxTitle"></p>';
                                     }
                             echo'</section>';
                                 
