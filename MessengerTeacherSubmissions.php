@@ -34,12 +34,14 @@
 
     //The function below is only executed when the yes button of the reply section in MessengerTeacher.php is pressed
     if(isset($_POST['reply'])){
+        
         //The ID of the question and the answer the user submitted is extracted
         $replyMessageID = $_POST['classID'];
         $replyAnswer = htmlspecialchars($_POST['replyInput'],ENT_COMPAT);
-
+        echo'<script>alert("Teacher ID: '.$ID.'")</script>';
+        echo'<script>alert("Message ID: '.$replyMessageID.'")</script>';
         //The query below checks if the the question they are replying to is a question that was addressed to them
-        $messageFind = "select Message_ID from messages where Message_ID = '$replyMessageID' && Teacher_ID = '$ID";
+        $messageFind = "select * from messages where Message_ID = '$replyMessageID' && Teacher_ID = '$ID'";
         $resultMessageFind = mysqli_query($con, $messageFind);
         $numMessageResult = mysqli_num_rows($resultMessageFind);
 
