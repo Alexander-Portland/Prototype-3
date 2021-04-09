@@ -1,6 +1,6 @@
 /* The background for every page is set to a mintcream color */
 body{
-  background-color:mintcream;
+  background-color:#f5fffa;
 }
 
 /* Login page form position settings when displayed on PCs*/
@@ -153,11 +153,11 @@ body{
 }
 
 .buttonGreen{
-  background-color: rgb(118, 190, 100);
+  background-color: #76be64;
 }
 
 .buttonRed{
-  background-color: rgb(197, 88, 88);
+  background-color: #c55858;
 }
 
 .teacherInteractionBoxTitle{

@@ -90,7 +90,7 @@ if($numStudent == 0){
                 </ol>
                 <!--This is the video part of the tutorial -->
                 <video class = "helpVideo" controls>
-                    <source src="" type="video/mp4">
+                    <source src="vid/TeacherHomepageHelp.mp4" type="video/mp4">
                 </video>
             </section>
         </section>

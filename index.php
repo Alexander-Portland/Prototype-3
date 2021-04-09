@@ -28,7 +28,7 @@
             </ol>
             <!--Video part of the tutorial -->
             <video class = "helpVideo" controls>
-                <source src="vid/loginHelp.mp4" type="video/mp4">
+                <source src="vid/loginPageHelp.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>

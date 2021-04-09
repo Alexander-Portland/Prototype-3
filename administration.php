@@ -76,7 +76,7 @@ if($numStudent == 0){
             </ol>
             <!--This is the video segement of the tutorial-->
             <video class = "helpVideo" controls>
-                <source src="" type="video/mp4">
+                <source src="vid/adminPageHelp.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>
