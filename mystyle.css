@@ -42,6 +42,7 @@ body{
   font-size: 18px;
 }
 
+/*logout input button settings*/
 .loginButton{
   background-color: #4f57c0; 
   border: none;
@@ -52,6 +53,7 @@ body{
   margin: auto;
 }
 
+/*login rejection settings */
 .loginRejectStyle{
   margin-top: 20%;
   border: 3px solid rgba(224, 82, 82, 0.911);
@@ -66,18 +68,18 @@ body{
   padding-left: 3vh;
 }
 
-/* Help drop down box settings */
+/*settings for help drop down display */
 .help {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
 }
 
 /* Drop down box animation settings */
@@ -103,6 +105,8 @@ body{
   animation-name: animatetop;
   animation-duration: 0.6s
 }
+
+/*Label settings for the drop down help display*/
 .helpContent label{
   color: aliceblue;
   list-style-type: none;
@@ -131,7 +135,7 @@ body{
   font-weight: bold;
 }
 
-/* */
+/*close hover and focus settings for the help display*/
 .close:hover,
 .close:focus {
   color: #000;
@@ -139,6 +143,7 @@ body{
   cursor: pointer;
 }
 
+/*the settings for most of the interfaces buttons are set*/
 .button {
   background-color: #4f57c0; 
   border: none;
@@ -152,14 +157,17 @@ body{
   display: inline;
 }
 
+/*Settings for confirmation buttons */
 .buttonGreen{
   background-color: #76be64;
 }
 
+/*Settings for cancelation buttons */
 .buttonRed{
   background-color: #c55858;
 }
 
+/* Smaller interction buttons used on the teachers interface*/
 .teacherInteractionBoxTitle{
   background-color: #4f57c0; 
   border: none;
@@ -171,7 +179,7 @@ body{
   display: block;
 }
 
-/* Login page display settings so that the login page works with mobile devices*/
+/*page display settings so that the page works with mobile devices*/
 @media screen and (max-width: 850px) {
   .loginBoxSettings{
     color: aliceblue;
@@ -183,20 +191,24 @@ body{
     border: 3px solid rgb(65, 61, 61);
   }
 
+  /*Class posts are set to maximum width*/
   .classPosts{
     padding: none;
     width: 100%;
   }
 
+  /*help displays are set to maximum width*/
   .helpContent{
     width: 100%;
     padding: 0px;
   }
 
+  /*login box position is moved*/
   .loginBoxPos{
     padding-top: 20%;
   }
 
+  /*Buttons are set to be more accessible when the resolutions are set to mobile devices*/
   .button{
     padding: 7px 16px;
     height: 6vh;
@@ -226,7 +238,7 @@ body{
 
 }
 
-
+/*navigation bar setting used on nearly every page*/
 .NavBar{
   list-style-type: none;
   margin: auto;
@@ -240,6 +252,7 @@ body{
   
 }
 
+/*the links used for navigation have there own visual settings*/
 .NavBar a{
   display: block;
   color: white;
@@ -252,12 +265,13 @@ body{
   height: 3em;
 }
 
-
+/*the links in the navbar have alternative settings for cursor hovering */
 .NavBar a:hover {
   color:black;
 	background-color: white;
 }
 
+/*The settings for the displayed text used in the navigation bar */
 .NavBar p{
   display:block;
   color: white;
@@ -270,6 +284,7 @@ body{
   height: 3em;
 }
 
+/*The settings for the text inputs */
 .textInput{
   display:block;
   margin: auto;
@@ -278,12 +293,12 @@ body{
   font-size: 18px;
 }
 
+/*Settings used to hide the contents of the page */
 .classAddStyle{
   visibility: hidden;
 }
 
-
-
+/*center position settings for page content*/
 .centerPosClass{
   padding-top: 5%;
   margin: auto;
@@ -291,6 +306,7 @@ body{
   
 }
 
+/*settings for individual class posts */
 .classPosts{
   margin-top: 5em;
   border: 3px solid rgba(255, 255, 255, 0.911);
@@ -300,48 +316,60 @@ body{
   filter: drop-shadow(0 0 30px #333);
 }
 
+/*seperator settings for individual class posts */
 .classPostSeperator{
   padding-top: 5em;
 }
 
+/*outlining settings for individual class posts*/
 .classOutliner{
   background-color:rgba(255, 255, 255, 0.808);
   outline-color: antiquewhite;
   filter: drop-shadow(0 0 2px #333);
 }
 
+/*expand button's settings */
 .expandButton{
   float: right;
 }
 
+/*settings to hide the contents of the displayed page*/
 .hidePost{
   display: none;
 }
 
+/*settings for the post title*/
 .classTitle{
   font-size: 2em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+/*settings for the post description */
 .classPostTitle{
   color: #111;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.3em;
 }
 
+/*settings for the post descripion */
 .classPostDescription{
   color: #111;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 19px;
 }
 
+/*settings for the download links*/
 .classPostDownloadable{
   color: #111;
   font-size: 0.8em;
 }
 
+/*settings for inline display of class content*/
 .displayInline{
   display:inline-block;
 }
 
+/*all paragraph settings*/
 p{
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 19px;

@@ -57,13 +57,12 @@ if($numStudent == 0){
                 <!--The help section is closes when the user presses the button below-->
                 <span id = "helpClose" class="close">&times;</span>
                 <label class = "loginLabel"><b>Using the questions and answers page</b></label>
-                <p class = "loginHelpText">To answer question from you're students, follow these steps:</p>
+                <p class = "loginHelpText">To answer question from your students, follow these steps:</p>
                 <!--This is the text part of the tutorial-->
                 <ol>
                 
-                    <li>Press the reply button for the message you wish to reply to.</li>
-                    <li>Type you're response in the text box next to the title "answer"</li>
-                    <li>When you're satisfied with you're answer, press the send button</li>
+                    <li>To view your inbox, press the "open inbox button", once open enter your answer and press the yes button to submit</li>
+                    <li>To view the questions history from your students, press the "view history" button and enter the first and last name of the student; then press the yes button to submit the search</li>
                 </ol>
                 <!--This is the video part of the tutorial -->
                 <video class = "helpVideo" controls>

@@ -20,23 +20,25 @@ function hideContent(contentID) {
     }
 }
 
-//This function helps minimise a section that is identified by the contentID variable that is pa
+//This function helps minimise a section that is identified by the contentID variable
 function minimise(contentID){
     var hideVar = document.getElementById(contentID);
     hideVar.style.display = "none";
 }
 
-//This helps to 
+//This function helps maximise a section that is identified by the contentID variable
 function maximise(contentID){
     var hideVar = document.getElementById(contentID);
     hideVar.style.display = "block";
 }
 
+//This function is used to automatically scroll the user back to the top of the page
 function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
+//This function opens send new message box and close all the other boxes
 function messageAdd(){
     maximise('classAdd');
     minimise('deleteMessage');
@@ -44,20 +46,25 @@ function messageAdd(){
     minimise('sent');
 }
 
+//This function opens inbox and closes all the other boxes
 function messageInbox(){
+    topFunction();
     maximise('inbox');
     minimise('classAdd');
     minimise('sent');
     minimise('deleteMessage');
 }
 
+//This function opens send new message box and close all the other boxes
 function messageSent(){
+    topFunction();
     maximise('sent');
     minimise('classAdd');
     minimise('inbox');
     minimise('deleteMessage');
 }
 
+//This function opens the view classes box and close all the other boxes
 function viewClasses(){
     topFunction();
     maximise('classViewer');
@@ -65,7 +72,7 @@ function viewClasses(){
     minimise('addAcount');
     minimise('seachAccount');
 }
-
+//This function opens the add class box and close all the other boxes
 function addClass(){
     topFunction();
     minimise('classViewer');
@@ -76,6 +83,7 @@ function addClass(){
     minimise('seachAccount');
 }
 
+//This function closes all boxes
 function closeOnNo(){
     topFunction();
     minimise('classAdd');
@@ -85,6 +93,7 @@ function closeOnNo(){
     minimise('seachAccount');
 }
 
+//This function opens the search account box and close all the other boxes
 function openSearch(){
     topFunction();
     maximise('seachAccount');
@@ -95,6 +104,7 @@ function openSearch(){
     minimise('addAcount');
 }
 
+//This function closes every box
 function viewAccountCloser(){
     minimise('accountAddClass');
     minimise('removeclass');
@@ -103,7 +113,7 @@ function viewAccountCloser(){
     minimise('accountDelete');
 }
 
-
+//This function opens the add account box and close all the other boxes
 function addAccount(){
     maximise('addAcount');
     minimise('classViewer');
@@ -113,6 +123,7 @@ function addAccount(){
     minimise('seachAccount');
 }
 
+//This function closes all of the boxes and clears the question title and question inputs
 function abortMessage(){
     minimise('sent');
     minimise('classAdd');
@@ -124,24 +135,29 @@ function abortMessage(){
     document.getElementsByName("sendQuestion")[0].value = blank;
 }
 
+//This function closes the message histroy box
 function abortMessageSearch(){
     minimise('messageHistory')
 }
 
+//This function closes the delete message box
 function abortDeleteMessage(){
     minimise('deleteMessage');
 }
 
+//This function closes the question reply box
 function abortTeacherMessage(){
     minimise('questionReply');
 }
 
+//This function opens the inbox and closes the message histroy box
 function teacherMessageInbox(){
     topFunction();
     maximise('classDisplay');
     minimise('messageHistory');
 }
 
+//This function opens the message history and closes the inbox and question reply box
 function teacherMessageHistory(){
     topFunction();
     maximise('messageHistory');
@@ -149,6 +165,7 @@ function teacherMessageHistory(){
     minimise('questionReply');
 }
 
+//This function closes all of the boxes on the admin page
 function abort(){
     minimise('classAdd');
     minimise('addClassTitle');
@@ -158,6 +175,7 @@ function abort(){
     minimise('updateClassTitle');
 }
 
+//This function forwards the selected class ID and title to the add class content
 function addSend(addID,classTitle){
     topFunction();
     maximise('classAdd');
@@ -173,6 +191,7 @@ function addSend(addID,classTitle){
     document.getElementsByName("classAddID")[0].value = addTopicID;
 }
 
+//This function forwards the details of selected class content that user wants to update to the update content box
 function updateSend(topicID, classTitle, postTitle, postDescription){
     topFunction();
     maximise('classSearch');
@@ -196,10 +215,9 @@ function updateSend(topicID, classTitle, postTitle, postDescription){
     document.getElementsByName("postNameSearch")[0].value = updatePostTitle;
     var updatePostDescription = document.getElementById(postDescription).textContent;
     document.getElementsByName("classDescriptionSearch")[0].value = updatePostDescription;
-
-    
 }
 
+//This function fowards the details of the selected class content that the user wishes to delete to the deletion box
 function deleteSend(topicID,classTitle,postName){
     topFunction();
     maximise('classDelete');
@@ -225,6 +243,7 @@ function deleteSend(topicID,classTitle,postName){
 
 }
 
+//This function will forward the details of a question that the user wishes to remove to the deletion box
 function messageDeleteSend(deleteMessageID, deleteMessageTo, deleteMessageSubject,deleteMessageQuestion){
     topFunction();
     maximise('deleteMessage');
@@ -243,6 +262,7 @@ function messageDeleteSend(deleteMessageID, deleteMessageTo, deleteMessageSubjec
     descriptionElement.innerHTML = sendDeleteQuestion;
 }
 
+//This function sends the details of the class the user wants to delete to the delete box
 function classDeleteSend(deleteClassID,deleteClassTitle,deleteClassDescription){
     topFunction();
     maximise('deleteClass');
@@ -258,6 +278,7 @@ function classDeleteSend(deleteClassID,deleteClassTitle,deleteClassDescription){
     deleteDescription.innerHTML = sendDeleteDescription;
 }
 
+//This function sends the details of the class the user wants to update to the update box
 function updateClass(classIdElement, classTitleElement, classDescriptionElement){
     topFunction();
     maximise('updateClass');
@@ -269,11 +290,10 @@ function updateClass(classIdElement, classTitleElement, classDescriptionElement)
     var classDescription = document.getElementById(classDescriptionElement).textContent;
     document.getElementsByName("classUpdateID")[0].value = classId;
     document.getElementsByName("classUpdate")[0].value = classTitle;
-    document.getElementsByName("classDescriptionUpdate")[0].value = classDescription;
-    
+    document.getElementsByName("classDescriptionUpdate")[0].value = classDescription;    
 }
 
-
+//This function sends the details of the quetion the user wants to reply to to the reply box
 function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescriptionJav){
     topFunction();
     maximise('questionReply');
@@ -293,7 +313,7 @@ function replySend(QuestionID,QuestionSenderJav,QuestionTitleJav,QuestionDescrip
     descriptionElement.innerHTML = sendQuestion;
 }
 
-
+//This function sends the details of the account the user wants to delete to the delete box
 function deleteAccountSend(selectID,selectDeleteType,selectFname,selectLname,selectUsername,selectPassword){
     topFunction();
     maximise('accountDelete');
@@ -322,10 +342,12 @@ function deleteAccountSend(selectID,selectDeleteType,selectFname,selectLname,sel
     deleteOutputType.innerHTML = sendType;
 }
 
+//This function closes the delete account box
 function closeDeleteAccountSend(){
     minimise('accountDelete');
 }
 
+//This function sends the details of a selected account the user wants to update to the update box
 function updateAccountSend(selectID,selectUpdateType,selectFname,selectLname,selectUsername,selectPassword){
     topFunction();
     minimise('accountDelete');
@@ -348,6 +370,7 @@ function updateAccountSend(selectID,selectUpdateType,selectFname,selectLname,sel
     document.getElementsByName("accountType")[0].value = sendType;
 }
 
+//This function sends the details of the account the user selected to add a class to the add class box
 function addAccountSend(selectID, selectAddType){
     topFunction();
     maximise('accountAddClass');
@@ -361,6 +384,7 @@ function addAccountSend(selectID, selectAddType){
     document.getElementsByName("accountAddType")[0].value = sendAccountType;
 }
 
+//This function sends the details of the searched account and class details of the class the user wants to remove to the remove class box
 function removeAccountClassSend(selectID,selectClassID,selectRemoveType,Title){
     topFunction();
     maximise('removeclass');
@@ -379,6 +403,7 @@ function removeAccountClassSend(selectID,selectClassID,selectRemoveType,Title){
     classTitleOutput.innerHTML = sendAccountClassTitle;
 }
 
+//This functionsends the details of the searched account and class details of the class the user wants to update to the update class box
 function updateClassAssign(selectID,selectClassID,selectUpdateClassType,Title){
     topFunction();
     maximise('updateAssignedClass');

@@ -21,8 +21,8 @@
             <!--Worded part of the tutorial -->
             <ol>
             
-                <li>Type you're username in the text box below "Username"</li>
-                <li>Type you're password in the text box below "password"</li>
+                <li>Type your username in the text box below "Username"</li>
+                <li>Type your password in the text box below "password"</li>
                 <li>Press the login button</li>
 
             </ol>

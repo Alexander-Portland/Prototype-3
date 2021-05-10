@@ -66,25 +66,23 @@ if($numStudent == 0){
                 <!--This is the text part of the tutorial-->
                 <ol>
                 
-                    <li>To add class content either press the "add" button at the top and manually input the you're upload criteria. Or you can select the class you wish to upload to by pressing the "add" button encapsualted in the selected class, from there take the following steps:</li>
+                    <li>To add class content either press the add button encapsulated in the class you wish to upload to; from there take the following steps:</li>
                         <ul>
-                            <li>Enter the name of the class you wish to asign the content to in the "Class Name" box</li>
                             <li>Enter the title/topic name of the upload to the "post title" box</li>
                             <li>Add you're description/goal of the upload to the "description" box</li>
                             <li>Choose the file you wish to upload by first pressing the "choose file" box</li>
-                            <li>When satisfied with you're upload, submit it by pressing the "upload" button</li>
+                            <li>When satisfied with you're upload, submit it by pressing the "yes" button</li>
                         </ul>
-                    <li>To delete class content either press the "delete" button at the top and manually input the class name and content title you wish to delete. Or you can select the content you wish to delete by the pressing the "delete" button encapsulated in the content you wish to delete then take the following steps:</li>
+                    <li>To delete class content press the delete button encapsulated in the class content you wish to delete; from there take the following steps:</li>
                         <ul>
-                            <li>Check that the content you wish to delete has been correctly selected by checking the "class name" and "post title boxes. Finally submit the deletion by pressing the "delete button"</li>
+                            <li>Check that the content you wish to delete has been correctly selected by checking the "class name" and "post title boxes. Finally submit the deletion by pressing the "yes" button</li>
                         </ul>
-                    <li>To add class content either press the "add" button at the top and manually input the you're upload criteria. Or you can select the class you wish to upload to by pressing the "add" button encapsualted in the selected class, from there take the following steps:</li>
+                    <li>To update class content press the update button encapsulated in the content you wish to update</li>
                         <ul>
-                            <li>Enter the name of the class you wish to asign the update to in the "Class Name" box</li>
                             <li>Enter the updated title/topic name of the upload to the "post title" box</li>
                             <li>Add you're updated description/goal of the upload to the "description" box</li>
                             <li>Choose the updated/unchanged file you wish to upload by first pressing the "choose file" box</li>
-                            <li>When satisfied with you're update, submit it by pressing the "update" button</li>
+                            <li>When satisfied with you're update, submit it by pressing the "yes" button</li>
                         </ul>
 
                 </ol>

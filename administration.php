@@ -59,25 +59,59 @@ if($numStudent == 0){
         <section class="helpContent">
             <!--The help box can be hidden when the user presses the close button-->
             <span id = "helpClose" class="close">&times;</span>
-            <label class = "loginLabel"><b>Using the questions and answers page</b></label>
-            <p class = "loginHelpText">To view you're questions and answers, take the following steps:</p>
-            <!--This is the text segement of the tutorial-->
-            <ol>
-            
-                <li>Press "inbox" button to view you're questions that have been answered</li>
-                <li>Press "sent" button to view you're questions that have not been answered"</li>
-                <li>Press "add" button to begin writing a new question then take the following steps: </li>
-                <ul>
-                    <li>Enter the username of the teacher you wish to submit the question to in the "Recipient" box</li>
-                    <li>Enter the title of the topic/subject your question is related to in the "Question Title" box</li>
-                    <li>Finally, enter the you'r question in the "Question" box</li>
-                <ul>
+            <label class = "loginLabel"><b>Using the admin page</b></label>
+            <p class = "loginHelpText">To use the admin page, take the following steps</p>
 
-            </ol>
+            <p class = "loginHelpText">To view the existing classes press the “View classes” button. This will display a form with each class in its own box. 
+                To delete a class press the “delete” button adjacent to the class you wish to delete. This will produce a form asking 
+                form final confirmation. Pressing yes will permanently delete the selected class, pressing no will abort the process 
+                and close the form. </p>
+            
+            <p class = "loginHelpText">If you wish to update a class, press the update button adjacent to the class you wish to update. 
+                When pressed an update form will be opened with the class title and description loaded into the class title and 
+                description textboxes. Make the necessary changes to the title and description and when you are satisfied with the 
+                change, press the yes button, to cancel the update simply press no which will close the form.</p>
+
+            <p class = "loginHelpText">To add a class to the system, press the add class button. When pressed the add class form will be 
+                displayed. Enter the title of the class in the textbox below the label “class title”, then enter the description of the class 
+                in the textbox below the label “class description”. When satisfied with the class title and description press the yes button 
+                to submit the class or no to abort and close the form.</p>
+
+            <p class = "loginHelpText">To add a new account, press the “add account” button, this will display a new form. Enter the first and 
+                last name, a unique username, the password and finally the account type. Once you are satisfied with the credentials of the new 
+                account, press the yes button to submit or no to abort and close the form. Once submitted the account will be active and able to 
+                login to the system.</p>
+
+            <p class = "loginHelpText">To assign classes or change the details of an existing account, first press the search button and enter the 
+                first and last name of the account, as well as entering the type of account. Once you are satisfied with your search inputs, press 
+                the yes button to submit the search, or press no to abort and close the form.</p>
+
+            <p class = "loginHelpText">Once the search is complete, for each account with the same first and last name and account type, the details 
+                of the account and the lessons they have been assigned will be displayed in their own separate box.</p>
+
+            <p class = "loginHelpText">If you wish to return to the homepage, then simply press the “return to admin page” button. To delete an account 
+                press the delete button inside of the account detail box and press yes on the confirm box, or no to cancel the deletion.</p>
+
+            <p class = "loginHelpText">To update the account details, press the update button inside the account detail box where you will be able to 
+                modify the details of the first and last name, username and password. When satisfied with the detail changes, press the yes button or 
+                no to cancel the update.</p>
+
+            <p class = "loginHelpText">To add a class to an account, press the “add classes to account” button. When pressed a new form with a class 
+                drop down menu will be displayed. Select the class you wish to add. When satisfied with the selected class press the yes button which 
+                will submit the class add or press no to abort and close the form.</p>
+
+            <p class = "loginHelpText">To remove an assigned lesson from an account press the remove button on the class you wish to remove. When pressed 
+                the remove form will be opened with a yes or no button. Press yes to remove the class assignment or press no to cancel and close the form.</p>
+
+            <p class = "loginHelpText">To update a class assignment from an account press the update button on the class slot you wish to reassign. When 
+                pressed this will open a form that will display the title of the old class and a drop down menu to select the new class. Once you have 
+                selected the new class, press the yes button to confirm the update or press no to abort and close the form.</p>
+
+            <p class = "loginHelpText">If you wish to log out, go to the admin home page and press the log out button on the navigation bar.</p>
+
             <!--This is the video segement of the tutorial-->
             <video class = "helpVideo" controls>
                 <source src="vid/adminPageHelp.mp4" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
         </section>
     </section>
@@ -185,7 +219,7 @@ if($numStudent == 0){
             <section class = "classPosts">
                 <!--The form below contains five inputs: the first name, last name, account type and a yes or no button -->
                 <form action="viewAccounts.php" method="post">
-                    <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Student</p>
+                    <p id = "addClassTitle" class = "teacherInteractionBoxTitle">Search Account</p>
                     <p><b>First Name</b></p><input type="text" name="fNameSearch" class = "inputButton" required>
                     <p><b>Last Name</b></p><input type="text" name="lNameSearch" class = "inputButton" required>
                     <!--The select input allows the user to specify the account type they are searching for-->

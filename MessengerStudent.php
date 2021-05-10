@@ -57,17 +57,18 @@ if($numStudent == 0){
             <!--The help page's tutorial contains a text and video tutorial -->
             <span id = "helpClose" class="close">&times;</span>
             <label class = "loginLabel"><b>Using the questions and answers page</b></label>
-            <p class = "loginHelpText">To view you're questions and answers, take the following steps:</p>
+            <p class = "loginHelpText">To view your questions and answers, take the following steps:</p>
             <!--This is the text segement of the tutorial -->
             <ol>
             
-                <li>Press "inbox" button to view you're questions that have been answered</li>
-                <li>Press "sent" button to view you're questions that have not been answered"</li>
-                <li>Press "add" button to begin writing a new question then take the following steps: </li>
+                <li>Press "inbox" button to view your questions that have been answered</li>
+                <li>Press "sent" button to view your questions that have not been answered</li>
+                <li>Press "send new quesion" button to begin writing a new question then take the following steps: </li>
                 <ul>
-                    <li>Enter the username of the teacher you wish to submit the question to in the "Recipient" box</li>
+                    <li>select the teacher you wish to send the question to in the recipient input</li>
                     <li>Enter the title of the topic/subject your question is related to in the "Question Title" box</li>
-                    <li>Finally, enter the you'r question in the "Question" box</li>
+                    <li>Enter the your question in the "Question" box</li>
+                    <li>Finally press the yes button to send the question</li>
                 <ul>
 
             </ol>
