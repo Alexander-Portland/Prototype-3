@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2021 at 04:02 PM
+-- Generation Time: May 21, 2021 at 12:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -175,16 +175,13 @@ INSERT INTO `studentdetails` (`student_id`, `forname`, `surname`, `student_usern
 (13, 'Henry', 'Qerty', 'HenrySt', 'Password10'),
 (14, 'Barry', 'Bronson', 'BarryST', 'Password11'),
 (15, 'Garath', 'Goodman', 'GarathST', 'Password12'),
-(24, 'ExampleStudentFName', 'ExampleStudentLName', 'ExampleAccountST', 'Password'),
 (25, 'Rory', 'Nelson', 'RoryST', 'Password'),
 (26, 'Dennis', 'Newman', 'DennisNST', 'Password'),
 (27, 'Dennis', 'Newman', 'DenniesNST', 'Password'),
 (28, 'Mathew', 'Dennis', 'MathewDST', 'Password'),
 (29, 'Sally', 'Sal', 'SallySST', 'Password'),
 (30, 'Sally', 'Sal', 'SallySST2', 'Password'),
-(31, 'Tommy', 'Cole', 'TommyCST', 'Password'),
-(32, 'ExampleStudentFName', 'ExampleStudentLName', 'ExampleAccountST1', 'Password'),
-(34, 'example update', 'example update', 'example', 'example');
+(31, 'Tommy', 'Cole', 'TommyCST', 'Password');
 
 -- --------------------------------------------------------
 
@@ -235,10 +232,6 @@ INSERT INTO `studentdetails_classdetails` (`id`, `student_id`, `class_id`) VALUE
 (58, 31, 7),
 (59, 31, 4),
 (60, 31, 2),
-(62, 32, 7),
-(63, 32, 4),
-(64, 32, 2),
-(67, 34, 2),
 (68, 2, 2);
 
 -- --------------------------------------------------------
@@ -374,7 +367,7 @@ ALTER TABLE `classdetails`
 -- AUTO_INCREMENT for table `class_posts`
 --
 ALTER TABLE `class_posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT for table `messages`

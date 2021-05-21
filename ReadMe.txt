@@ -8,15 +8,15 @@ account types in the following order:
 Below are the different account logins for each account type that should give you the complete experience 
 of the application
 --------------------------------------------Student Login------------------------------------------------
-Username   | Password
-AlexBST    | Password
-RichardBST | Password2
-LizLST     | Password3
+First Name| Last Name  | Username   | Password
+Alex      | Brace      | AlexBST    | Password
+Richard   | Richardson | RichardRST | Password2
+Liz       | Lizbeth    | LizLST     | Password3
 --------------------------------------------Teacher Login------------------------------------------------
-Username | Password
-HelenBTE | Password
-RhianWTE | password2
-JoyJTE   | password3
+First Name| Last Name | Username | Password
+Helen     | Brace     | HelenBTE | Password
+Rhian     | Williams  | RhianWTE | Password2
+Joy       | Jones     | JoyJTE   | Password3
 ---------------------------------------------Admin Login-------------------------------------------------
-Username   | Password
-RichardBAD | Password
+First Name| Last Name | Username   | Password
+Richard   | Brace     | RichardBAD | Password
